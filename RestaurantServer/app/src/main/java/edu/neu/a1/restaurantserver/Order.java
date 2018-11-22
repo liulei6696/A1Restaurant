@@ -8,7 +8,7 @@ public class Order {
     private static int count=1;
     private String customerName;
     private HashMap<Item,Integer> itemsMap;
-    private Enum status;
+    private Status status;
 
     public Order(HashMap<Item,Integer> map) {
         itemsMap=map;
@@ -31,11 +31,11 @@ public class Order {
         this.customerName = customerName;
     }
 
-    public Enum getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(Enum status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
