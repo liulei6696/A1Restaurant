@@ -1,6 +1,7 @@
 package edu.neu.a1.restaurantserver;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class OrderList {
 
@@ -14,7 +15,8 @@ public class OrderList {
         return this.orderList;
     }
 
-    public void addOrder(Order order){
+    public void addOrder(HashMap<Item,Integer> map){
+        Order order =new Order(map);
         orderList.add(order);
     }
 

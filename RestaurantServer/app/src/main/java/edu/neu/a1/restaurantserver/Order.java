@@ -1,22 +1,26 @@
 package edu.neu.a1.restaurantserver;
 
+import java.util.HashMap;
+
 public class Order {
 
-    private int customerId;
+    private int orderId;
+    private static int count=1;
     private String customerName;
-    private Item item;
-    private String status;
+    private HashMap<Item,Integer> itemsMap;
+    private Enum status;
 
-    public Order() {
-
+    public Order(HashMap<Item,Integer> map) {
+        itemsMap=map;
+        orderId=count++;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public String getCustomerName() {
@@ -27,19 +31,11 @@ public class Order {
         this.customerName = customerName;
     }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public String getStatus() {
+    public Enum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Enum status) {
         this.status = status;
     }
 
