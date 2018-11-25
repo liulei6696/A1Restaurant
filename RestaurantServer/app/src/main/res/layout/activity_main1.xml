@@ -7,6 +7,37 @@
     android:layout_height="match_parent">
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="415dp"
+        android:layout_height="133dp"
+        android:background="@mipmap/pic1"
+        android:text="\nA1 Restaurant"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/primary_black"
+        android:textSize="36sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/orderList"
+        android:layout_width="410dp"
+        android:layout_height="48dp"
+        android:background="@color/colorAccent"
+        android:text="Order  List"
+        android:textAlignment="center"
+        android:textColor="@color/primary_white"
+        android:textSize="28sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
 
     <TextView
         android:id="@+id/textView3"
@@ -16,11 +47,9 @@
         android:text="Order 1"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderList" />
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
@@ -50,4 +79,31 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status            "
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@+id/button1"
+        app:layout_constraintTop_toTopOf="@+id/textView3"/>
+
+    <TextView
+        android:id="@+id/status2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status            "
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+
+
+
 </android.support.constraint.ConstraintLayout>
