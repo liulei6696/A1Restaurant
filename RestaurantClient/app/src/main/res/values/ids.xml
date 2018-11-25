@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="Burg" type="id" />
+    <item name="Chick" type="id" />
+    <item name="Fries" type="id" />
+    <item name="Rings" type="id" />
+    <item name="Status" type="id" />
+    <item name="orderList" type="id" />
+    <item name="main" type="id" />
+    <item name="confirm" type="id" />
+    <item name="cancel" type="id" />
+</resources>
