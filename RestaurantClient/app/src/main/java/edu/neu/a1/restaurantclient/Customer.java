@@ -5,29 +5,37 @@ import java.util.List;
 
 public class Customer {
 
-    // TODO: add attributes and methods
-    String name;
-    int id;
-    List orderList = new ArrayList<Order>();
+    private String name;
+    private int id;
+    private List<Order> orderList = new ArrayList<>();
 
-    public String getname(){
-        return name;
-    }
-
-    public void setname(String name){
+    public Customer(String name, int id){
         this.name = name;
-    }
-
-    public int getid(){
-        return id;
-    }
-
-    public void setid(int id){
         this.id = id;
     }
 
-    public List addOrder(Order order){
+//    public String getName(){
+//        return name;
+//    }
+//
+//    public void setName(String name){
+//        this.name = name;
+//    }
+
+    public int getId(){
+        return id;
+    }
+
+//    public void setId(int id){
+//        this.id = id;
+//    }
+
+    public void addOrder(Order order){
         orderList.add(order);
+//        return orderList;
+    }
+
+    public List<Order> getOrderList(){
         return orderList;
     }
 }

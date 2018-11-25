@@ -11,6 +11,6 @@ public enum OrderStatus {
     Wait,
     OnProcess,
     Ready,
-    Cancelled;
+    Cancelled
 
 }
