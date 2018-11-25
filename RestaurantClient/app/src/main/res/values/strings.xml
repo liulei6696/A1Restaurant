@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">RestaurantClient</string>
+    <string name="restaurant_name">A1 Restaurant</string>
+    <string name="welcome">Welcome,</string>
+    <string name="guid">Pick your items!</string>
+    <string name="item1">Burgers</string>
+    <string name="item1Price">$ 5.0</string>
+    <string name="item2">Chickens</string>
+    <string name="item2Price">$ 7.0</string>
+    <string name="item3">French Fries</string>
+    <string name="item3Price">$ 2.5</string>
+    <string name="item4">Onion Rings</string>
+    <string name="item4Price">$ 3.5</string>
 </resources>
