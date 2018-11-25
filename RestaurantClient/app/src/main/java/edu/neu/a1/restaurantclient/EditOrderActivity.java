@@ -25,8 +25,32 @@ public class EditOrderActivity extends Activity {
         confirm = (Button)findViewById(R.id.confirm);
         cancel = (Button)findViewById(R.id.cancel);
 
-        confirm.setOnClickListener();
-        cancel.setOnClickListener();
+        //Status with confirm and cancel buttons
+        Status.setText("pending");
+        confirm.setTag(false);
+        cancel.setTag(false);
+        final boolean flag =(boolean) confirm.getTag();
+        final boolean flag2 =(boolean) cancel.getTag();
+        confirm.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                if (!flag2 && !flag) {
+                    Status.setText("confirmed");
+                    confirm.setTag(true);
+                }
+            }});
+        cancel.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                if (!flag2) {
+                    Status.setText("cancelled");
+                    cancel.setTag(true);
+                }
+            }});
+
+        //interface jump
         addListenerOnOrderList();
         addListenerOnMain();
     }
