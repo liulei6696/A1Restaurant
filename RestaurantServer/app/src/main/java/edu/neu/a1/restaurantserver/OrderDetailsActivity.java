@@ -6,12 +6,20 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Semaphore;
 
 public class OrderDetailsActivity extends Activity{
 
     TextView msg, orderId, burger, chicken, status, fries, onionrings;
+    ScrollView check;
     Button confirm, cancelorder, back;
+    Order order;
+    ConnectionToClient connectionToClient;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -25,18 +33,66 @@ public class OrderDetailsActivity extends Activity{
         status = (TextView)findViewById(R.id.status);
         confirm = (Button)findViewById(R.id.confirm);
         cancelorder = (Button)findViewById(R.id.cancel);
+        check=(ScrollView) findViewById(R.id.check);
 
+        //getorderdetail
+        order=getIntent().getExtras().getParcelable("Order");
+        order.setStatus(getIntent().getExtras().getString("Status"));
+        order.setItemsMap((HashMap<Item, Integer>) getIntent().getExtras().getSerializable("Map"));
+
+        //get connectiontoclient and order
+        connectionToClient=MainActivity.orderList.getClient(order.getOrderId());
+
+        boolean enough=CheckIfEnough();
+        if(enough){
+            TextView textView=new TextView(this);
+            textView.setText("Enough stock");
+            check.addView(textView);
+        }
+        else {
+            TextView textView=new TextView(this);
+            Order modifiedOrder=order;
+            modifiedOrder.setItemsMap((HashMap<Item, Integer>) MainActivity.inventoryController.ModifyOrder(order.getItemsMap()));
+            textView.append(Integer.toString(order.getOrderId()));
+            Map<Item,Integer> Itemsdetail=modifiedOrder.getItemsMap();
+            for(Item i:Itemsdetail.keySet()){
+                StringBuilder s=new StringBuilder();
+                s.append(i.getName()).append("       ");
+                s.append(Itemsdetail.get(i));
+                textView.append(s.toString());
+            }
+            connectionToClient.SendPartialNotificatin(modifiedOrder);
+        }
 
         addListenerOnConfirm();
         addListenerOnBack();
     }
 
+    private boolean CheckIfEnough() {
+        return MainActivity.inventoryController.IfEnough(order.getItemsMap());
+    }
+
     public void addListenerOnConfirm(){
 
         final Context context = this;
-
         confirm = (Button) findViewById(R.id.confirm);
 
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                connectionToClient.SendOrder(order);
+                int id=order.getOrderId();
+                Thread order=new SingleOrderThread(MainActivity.orderList,new Semaphore(4),id,MainActivity.kitchen);
+                if(!MainActivity.orderList.getOrder(id).isBlocked()||MainActivity.orderList.getOrder(id).getStatus()==Status.canceled){
+                    order.start();
+                }
+                try {
+                    order.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 //        confirm.setOnClickListener(new View.OnClickListener() {
 //
 //            @Override
