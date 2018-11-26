@@ -118,17 +118,17 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:text="Status:"
-                android:textSize="24sp" />
-
-            <TextView
                 android:id="@+id/Status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="Status:"
                 android:textSize="24sp" />
 
             <TextView
