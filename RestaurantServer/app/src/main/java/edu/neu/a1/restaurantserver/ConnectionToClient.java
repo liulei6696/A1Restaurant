@@ -51,6 +51,7 @@ public class ConnectionToClient {
         try {
             if(order!=null) {
                 out.writeObject(order);
+                out.flush();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,6 +63,7 @@ public class ConnectionToClient {
         if(CheckIfIsCompleteClient()){
             try {
                 out.writeObject(order);
+                out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }
