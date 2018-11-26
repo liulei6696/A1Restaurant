@@ -110,7 +110,7 @@
         android:text="Confirm Order"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Modify" />
+        app:layout_constraintTop_toBottomOf="@+id/sendRequest" />
 
     <Button
         android:id="@+id/cancel"
@@ -121,7 +121,7 @@
         android:text="Cancel Order"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Modify" />
+        app:layout_constraintTop_toBottomOf="@+id/sendRequest" />
 
     <Button
         android:id="@+id/back"
@@ -135,7 +135,7 @@
         app:layout_constraintTop_toBottomOf="@+id/confirm" />
 
     <Button
-        android:id="@+id/Modify"
+        android:id="@+id/sendRequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

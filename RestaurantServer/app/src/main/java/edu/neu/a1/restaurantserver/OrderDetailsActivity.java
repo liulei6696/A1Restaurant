@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class OrderDetailsActivity extends Activity{
 
     TextView msg, orderId, burger, chicken, status, fries, onionrings;
-    Button confirm, cancelorder, back;
+    Button confirm, cancelorder, back, sendRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -25,10 +25,12 @@ public class OrderDetailsActivity extends Activity{
         status = (TextView)findViewById(R.id.status);
         confirm = (Button)findViewById(R.id.confirm);
         cancelorder = (Button)findViewById(R.id.cancel);
+        sendRequest = (Button)findViewById(R.id.sendRequest);
 
 
         addListenerOnConfirm();
         addListenerOnBack();
+        addListenerOnSendRequest();
     }
 
     public void addListenerOnConfirm(){
@@ -63,6 +65,25 @@ public class OrderDetailsActivity extends Activity{
 
                 Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
+
+            }
+
+        });
+    }
+
+    public void addListenerOnSendRequest(){
+
+        final Context context = this;
+
+        sendRequest = (Button) findViewById(R.id.sendRequest);
+
+        sendRequest.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+//                Intent intent = new Intent(context, MainActivity.class);
+//                startActivity(intent);
 
             }
 
