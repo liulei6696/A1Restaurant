@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     {
         try {
-            serverSocket = new ServerSocket(8888);
+            serverSocket = new ServerSocket(8080);
         } catch (IOException e) {
             e.printStackTrace();
         }

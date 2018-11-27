@@ -32,8 +32,8 @@ public class MainPageActivity extends AppCompatActivity {
     // initialize order map for customer
     Order order = new Order(lei.getId());
 
-    // socket
-    Socket socket = null;
+    // servlet
+    Servlet servlet = new Servlet();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,49 +170,43 @@ public class MainPageActivity extends AppCompatActivity {
         });
     }
 
-    private class ConnectToServerThread extends Thread{
+//    private class ConnectToServerThread extends Thread{
+//
+//        @Override
+//        public void run() {
+//            try{
+//                socket = new Socket("10.0.2.2", 8080);
+//            }catch (UnknownHostException e){
+//                e.printStackTrace();
+//            }catch (IOException e){
+//                e.printStackTrace();
+//            }finally{
+//                if(socket != null){
+//                    try{
+//                        socket.close();
+//                    }catch (IOException e){
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+
+
+    private class SendOrderAndRefreshOrderThread extends Thread{
 
         @Override
         public void run() {
-            try{
-                socket = new Socket("10.0.2.2", 8080);
-            }catch (UnknownHostException e){
-                e.printStackTrace();
-            }catch (IOException e){
-                e.printStackTrace();
-            }finally{
-                if(socket != null){
-                    try{
-                        socket.close();
-                    }catch (IOException e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-    }
 
+            servlet.sendOut(order);
+            order = servlet.get();
 
-
-    private class PlaceOrderSendThread extends Thread{
-
-        private Socket socket;
-
-        PlaceOrderSendThread(Socket socket){
-            this.socket = socket;
-        }
-
-        @Override
-        public void run() {
-            OutputStream outputStream;
-
-            try{
-                outputStream = socket.getOutputStream();
-                PrintStream printStream = new PrintStream(outputStream);
-                printStream.print(order);
-            }catch (IOException e){
-                e.printStackTrace();
-            }
+            Intent intent = new Intent(MainPageActivity.this, EditOrderActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("order",order);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     }
 
@@ -220,7 +214,7 @@ public class MainPageActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-//            new PlaceOrderSendThread(socket).run();
+//            new SendOrderAndRefreshOrderThread().run();
 
             Intent intent = new Intent(MainPageActivity.this, EditOrderActivity.class);
             Bundle bundle = new Bundle();
