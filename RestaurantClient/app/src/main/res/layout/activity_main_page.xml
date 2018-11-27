@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="3">
 
                 <!-- TODO: adjust button position-->
@@ -108,7 +108,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:paddingTop="10dp"
-                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="5dp"
                     android:background="@drawable/minus" />
 
                 <Button
@@ -117,7 +117,8 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/plus"
-                    android:paddingLeft="10dp" />
+                    android:paddingLeft="5dp" />
+
             </LinearLayout>
 
 
@@ -162,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="3">
 
                 <Button
@@ -224,7 +225,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="3">
 
                 <Button
@@ -232,6 +233,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:paddingTop="10dp"
+                    android:paddingLeft="5dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/minus" />
 
@@ -286,7 +288,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="3">
 
                 <Button
@@ -507,6 +509,16 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
 

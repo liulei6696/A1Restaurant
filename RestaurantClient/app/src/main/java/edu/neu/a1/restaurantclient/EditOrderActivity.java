@@ -9,19 +9,25 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class EditOrderActivity extends Activity {
-    // TODO: third page, edit order
 
-    TextView Burg, Chick, Fries, Rings, Status;
+    TextView burg, chick, fries, rings, Status;
     Button confirm, cancel, orderList, main;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_order); // TODO: layout for this page
-        Burg = (TextView)findViewById(R.id.Burg);
-        Chick = (TextView)findViewById(R.id.Chick);
-        Fries = (TextView)findViewById(R.id.Fries);
-        Rings = (TextView)findViewById(R.id.Rings);
+        setContentView(R.layout.activity_edit_order);
+
+        burg = (TextView)findViewById(R.id.BurgNum);
+        chick = (TextView)findViewById(R.id.ChickNum);
+        fries = (TextView)findViewById(R.id.FriesNum);
+        rings = (TextView)findViewById(R.id.RingsNum);
+
+        new RefreshQuantitiesTextViewsThread(getIntent()).start();
+
+
         Status = (TextView)findViewById(R.id.Status);
+
         confirm = (Button)findViewById(R.id.confirm);
         cancel = (Button)findViewById(R.id.cancel);
 
@@ -91,6 +97,26 @@ public class EditOrderActivity extends Activity {
             }
 
         });
+    }
+
+    private class RefreshQuantitiesTextViewsThread extends Thread{
+
+        Intent intent;
+
+        RefreshQuantitiesTextViewsThread(Intent intent){
+            this.intent = intent;
+        }
+
+        @Override
+        public void run() {
+            Order order = (Order) intent.getSerializableExtra("order");
+
+            burg.setText(order.getItemNum("burger")+"");
+            chick.setText(order.getItemNum("chicken")+"");
+            fries.setText(order.getItemNum("fries")+"");
+            rings.setText(order.getItemNum("onionRings")+"");
+
+        }
     }
 }
 

@@ -1,6 +1,8 @@
 package edu.neu.a1.restaurantclient.item;
 
-public interface Item {
+import java.io.Serializable;
+
+public interface Item extends Serializable {
 
     public double getPrice();
 
