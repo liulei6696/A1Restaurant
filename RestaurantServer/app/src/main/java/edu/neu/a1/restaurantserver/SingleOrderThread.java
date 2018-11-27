@@ -23,6 +23,7 @@ class SingleOrderThread extends Thread{
         try {
             sema.acquire();
             orderList.getOrder(id).setStatus(Status.wait);
+            orderList.getClientAndOrderMap().get(id).SendOrder(orderList.getOrder(id));
             System.out.println(threadName + " gets a permit.");
             if(orderList.getOrder(id).isBlocked()||orderList.getOrder(id).getStatus()==Status.canceled){
                 Thread.interrupted();
@@ -33,10 +34,12 @@ class SingleOrderThread extends Thread{
                 }
             }
             orderList.getOrder(id).setStatus(Status.onProcess);
+            orderList.getClientAndOrderMap().get(id).SendOrder(orderList.getOrder(id));
             kitchen.cook();
             //orderlist.setState()
             kitchen.prepare();
             orderList.getOrder(id).setStatus(Status.ready);
+            orderList.getClientAndOrderMap().get(id).SendOrder(orderList.getOrder(id));
             sema.release();
         } catch (InterruptedException e) {
             e.printStackTrace();
