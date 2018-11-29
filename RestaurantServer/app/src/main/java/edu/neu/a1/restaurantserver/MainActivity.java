@@ -7,13 +7,9 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,7 +19,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -44,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     {
         try {
-            serverSocket = new ServerSocket(8080);
+            serverSocket = new ServerSocket(8888);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
     //ScrollView scrollView=new ScrollView(this);
     //TextView textView=new TextView(this);
-
-    ListView listView;
 
 
     @Override
@@ -103,17 +96,6 @@ public class MainActivity extends AppCompatActivity {
         addListenerOnButton2();
         order1=findViewById(R.id.textView2);
         order2=findViewById(R.id.textView3);
-
-        //Initiate list view
-        listView=(ListView) findViewById(R.id.ListView);
-        ArrayAdapter arrayAdapter= new ArrayAdapter(this,android.R.layout.simple_list_item_1,orderList.getOrderList());
-        listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO: Navigate to "Order Details" page.
-            }
-        });
     }
 
     public void addListenerOnButton() {
@@ -203,7 +185,10 @@ public class MainActivity extends AppCompatActivity {
                                         int id = getOrderID();
                                         Order order = cur.ReceiveOrder(id);
                                         orderList.addOrder(order,cur);
-                                        order1.append(Integer.toString(order.getOrderId()));
+
+                                        /*
+                                        new a order textview in the listview
+                                         */
                                         MainActivity.orderList.getClientAndOrderMap().get(order).SendOrder(order);
                                     }
                                 } catch (IOException e) {
