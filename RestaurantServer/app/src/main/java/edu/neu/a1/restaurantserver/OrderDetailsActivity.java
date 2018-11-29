@@ -19,6 +19,7 @@ public class OrderDetailsActivity extends Activity{
     ScrollView check;
     Button confirm, cancelorder, back;
     Order order;
+    int id;
     ConnectionToClient connectionToClient;
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -36,36 +37,37 @@ public class OrderDetailsActivity extends Activity{
 //        check=(ScrollView) findViewById(R.id.check);
 
         //getorderdetail
-        order=getIntent().getExtras().getParcelable("Order");
-        order.setStatus(getIntent().getExtras().getString("Status"));
-        order.setItemsMap((HashMap<Item, Integer>) getIntent().getExtras().getSerializable("Map"));
+        id= (int) getIntent().getExtras().get("ID");
+        order=MainActivity.orderList.getOrder(id);
+        orderId.setText(id);
 
         /*
         这里
          */
         //get connectiontoclient and order
-        connectionToClient=MainActivity.orderList.getClient(order.getOrderId());
-
-        boolean enough=CheckIfEnough();
-        if(enough){
-            TextView textView=new TextView(this);
-            textView.setText("Enough stock");
-            check.addView(textView);
-        }
-        else {
-            TextView textView=new TextView(this);
-            Order modifiedOrder=order;
-            modifiedOrder.setItemsMap((HashMap<Item, Integer>) MainActivity.inventoryController.ModifyOrder(order.getItemsMap()));
-            textView.append(Integer.toString(order.getOrderId()));
-            Map<Item,Integer> Itemsdetail=modifiedOrder.getItemsMap();
-            for(Item i:Itemsdetail.keySet()){
-                StringBuilder s=new StringBuilder();
-                s.append(i.getName()).append("       ");
-                s.append(Itemsdetail.get(i));
-                textView.append(s.toString());
-            }
-            connectionToClient.SendPartialNotificatin(modifiedOrder);
-        }
+//        connectionToClient=MainActivity.orderList.getClient(order.getOrderId());
+//
+//        boolean enough=CheckIfEnough();
+//        if(enough){
+//            TextView textView=new TextView(this);
+//            textView.setText("Enough stock");
+//            check.addView(textView);
+//
+//        }
+//        else {
+//            TextView textView=new TextView(this);
+//            Order modifiedOrder=order;
+//            modifiedOrder.setItemsMap((HashMap<Item, Integer>) MainActivity.inventoryController.ModifyOrder(order.getItemsMap()));
+//            textView.append(Integer.toString(order.getOrderId()));
+//            Map<Item,Integer> Itemsdetail=modifiedOrder.getItemsMap();
+//            for(Item i:Itemsdetail.keySet()){
+//                StringBuilder s=new StringBuilder();
+//                s.append(i.getName()).append("       ");
+//                s.append(Itemsdetail.get(i));
+//                textView.append(s.toString());
+//            }
+//            connectionToClient.SendPartialNotificatin(modifiedOrder);
+//        }
 
         addListenerOnConfirm();
         addListenerOnBack();

@@ -99,7 +99,7 @@ public class Order implements Parcelable {
 
     @Override
     public String toString(){
-        return "Order ID: "+Integer.toString(orderId) + "   Status: " + status ;
+        return "Order ID: "+Integer.toString(orderId) + "       Status: " + status ;
     }
 
 }

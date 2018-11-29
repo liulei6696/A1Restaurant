@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
             }
         },60,TimeUnit.HOURS);
 
-        Thread main=new ServerSocketThread(serverSocket);
-        main.start();
+//        Thread main=new ServerSocketThread(serverSocket);
+//        main.start();
 
 
         // Test order:
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         hh.put(new Burger(),1);
         final Order e=new Order(hh);
         orderList.getOrderList().add(e);
-
+        orderList.addOrder(e,null);
         //
 
 
@@ -122,10 +122,14 @@ public class MainActivity extends AppCompatActivity {
                 // TODO: get order id here
 
 
-                if(e!=null) {
-                    bundle.putParcelable("Order", e);
-                    bundle.putSerializable("Map", e.getItemsMap());
-                    bundle.putString("Status", e.getStatus().toString());
+
+
+                // TODO: get order id here:
+                String idString=listView.getItemAtPosition(position).toString().substring(10,15);
+                idString.trim();
+                if(idString!=null) {
+                    bundle.putInt("ID",Integer.parseInt(idString));
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
             }
@@ -145,71 +149,71 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private class ServerSocketThread extends Thread {
-        private ServerSocket serverSocket;
-
-        ServerSocketThread(ServerSocket serverSocket) {
-            this.serverSocket = serverSocket;
-        }
-
-        public void run() {
-            while (true) {
-                Socket socket = null;
-                try {
-                    socket = serverSocket.accept();
-                    final ConnectionToClient cur = new ConnectionToClient(socket);
-                    Thread ReceiverOrderContinually = new Thread(new Runnable() {
-
-
-                        @Override
-                        public void run() {
-                            while (true) {
-                                try {
-                                    if (cur.ReceiveOrderDetail() != null) {
-                                        int id = getOrderID();
-                                        Order order = cur.ReceiveOrder(id);
-                                        orderList.addOrder(order,cur);
-
-                                        listView= findViewById(R.id.ListView);
-                                        ArrayAdapter arrayAdapter2= new ArrayAdapter(context,android.R.layout.simple_list_item_1,orderList.getOrderList());
-                                        listView.setAdapter(arrayAdapter2);
-                                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                            @Override
-                                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                                                Intent intent = new Intent(context, OrderDetailsActivity.class);
-                                                Bundle bundle=new Bundle();
-
-                                                // TODO: get order id here:
-
-//                                                if(order!=null) {
-//                                                    bundle.putParcelable("Order", order);
-//                                                    bundle.putSerializable("Map", order.getItemsMap());
-//                                                    bundle.putString("Status", order.getStatus().toString());
-//                                                    startActivity(intent);
-//                                                }
-                                            }
-                                        });
-
-                                        MainActivity.orderList.getClientAndOrderMap().get(order).SendOrder(order);
-                                    }
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                } catch (ClassNotFoundException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-
-                        }
-                    });
-                    ReceiverOrderContinually.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                }
-            }
-        }
-    }
+//    private class ServerSocketThread extends Thread {
+//        private ServerSocket serverSocket;
+//
+//        ServerSocketThread(ServerSocket serverSocket) {
+//            this.serverSocket = serverSocket;
+//        }
+//
+//        public void run() {
+//            while (true) {
+//                Socket socket = null;
+//                try {
+//                    socket = serverSocket.accept();
+//                    final ConnectionToClient cur = new ConnectionToClient(socket);
+//                    Thread ReceiverOrderContinually = new Thread(new Runnable() {
+//
+//
+//                        @Override
+//                        public void run() {
+//                            while (true) {
+//                                try {
+//                                    if (cur.ReceiveOrderDetail() != null) {
+//                                        int id = getOrderID();
+//                                        Order order = cur.ReceiveOrder(id);
+//                                        orderList.addOrder(order,cur);
+//
+//                                        listView= findViewById(R.id.ListView);
+//                                        ArrayAdapter arrayAdapter2= new ArrayAdapter(context,android.R.layout.simple_list_item_1,orderList.getOrderList());
+//                                        listView.setAdapter(arrayAdapter2);
+//                                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                                            @Override
+//                                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                                                Intent intent = new Intent(context, OrderDetailsActivity.class);
+//                                                Bundle bundle=new Bundle();
+//
+//                                                // TODO: get order id here:
+//                                                String idString=listView.getItemAtPosition(position).toString().substring(10,15);
+//                                                idString.trim();
+//                                                if(idString!=null) {
+//                                                    bundle.putInt("ID",Integer.parseInt(idString));
+//                                                    intent.putExtras(bundle);
+//                                                   startActivity(intent);
+//                                               }
+//                                            }
+//                                        });
+//
+//                                        MainActivity.orderList.getClientAndOrderMap().get(order).SendOrder(order);
+//                                    }
+//                                } catch (IOException e) {
+//                                    e.printStackTrace();
+//                                } catch (ClassNotFoundException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//
+//                        }
+//                    });
+//                    ReceiverOrderContinually.start();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//
+//                }
+//            }
+//        }
+//    }
     synchronized public int getOrderID(){
         MainActivity.OrderID++;
         return OrderID;
