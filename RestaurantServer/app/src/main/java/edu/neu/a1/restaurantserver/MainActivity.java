@@ -36,31 +36,24 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-//    File file=new File("Inventory.txt");
-//    FileReader fileReader;
-//    FileWriter fileWriter;
-//    BufferedReader bufferedReader;
-//    ServerSocket serverSocket;
-//
-//    {
-//        try {
-//            serverSocket = new ServerSocket(8080);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    File file=new File("Inventory.txt");
+    FileReader fileReader;
+    FileWriter fileWriter;
+    BufferedReader bufferedReader;
+    ServerSocket serverSocket;
+
+    {
+        try {
+            serverSocket = new ServerSocket(8080);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private static int OrderID=0;
     static InventoryController inventoryController;
     static Set<ConnectionToClient> set=new HashSet<>();
     static OrderList orderList=new OrderList();
     static  Kitchen kitchen=new Kitchen();
-    Button button;
-    TextView view1;
-    TextView order1;
-    TextView order2;
-
-    //ScrollView scrollView=new ScrollView(this);
-    //TextView textView=new TextView(this);
 
     ListView listView;
     final Context context = this;
@@ -69,16 +62,16 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main1_listview);
-//        try {
-//            fileReader=new FileReader(file);
-//            fileWriter=new FileWriter(file);
-//            bufferedReader=new BufferedReader(fileReader);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        inventoryController=new InventoryController(bufferedReader,fileWriter);
+        try {
+            fileReader=new FileReader(file);
+            fileWriter=new FileWriter(file);
+            bufferedReader=new BufferedReader(fileReader);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        inventoryController=new InventoryController(bufferedReader,fileWriter);
 
         Semaphore semaphore=new Semaphore(4);
 
@@ -98,24 +91,21 @@ public class MainActivity extends AppCompatActivity {
             }
         },60,TimeUnit.HOURS);
 
-//        Thread main=new ServerSocketThread(serverSocket);
-//        main.start();
-//        addListenerOnButton();
-//        addListenerOnButton2();
-//        order1=findViewById(R.id.textView2);
-//        order2=findViewById(R.id.textView3);
+        Thread main=new ServerSocketThread(serverSocket);
+        main.start();
 
-        // Test:
+
+        // Test order:
         HashMap<Item,Integer> hh=new HashMap<>();
         hh.put(new Burger(),1);
-        Order e=new Order(hh);
+        final Order e=new Order(hh);
         orderList.getOrderList().add(e);
 
         //
 
 
         listView= findViewById(R.id.ListView);
-        ArrayAdapter arrayAdapter2= new ArrayAdapter(context,android.R.layout.simple_list_item_1,orderList.getOrderList());
+        final ArrayAdapter arrayAdapter2= new ArrayAdapter(context,android.R.layout.simple_list_item_1,orderList.getOrderList());
 
         listView.setAdapter(arrayAdapter2);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -123,70 +113,34 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(context, OrderDetailsActivity.class);
-                startActivity(intent);
-
-            }
-        });
-    }
-
-    public void addListenerOnButton() {
-
-        //scrollView.addView(textView);
-        final Context context = this;
-
-        button = (Button) findViewById(R.id.button1);
-
-        button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                Intent intent = new Intent(context, OrderDetailsActivity.class);
                 Bundle bundle=new Bundle();
-                //get order id from textview
-                int id=Integer.parseInt((String) order1.getText());
-                //get complete order by connectiontoclient
-                Order order=orderList.getOrder(id);
-                if(order!=null){
-                    bundle.putParcelable("Order", order);
-                    bundle.putSerializable("Map",order.getItemsMap());
-                    bundle.putString("Status",order.getStatus().toString());
+//                //get order id from textview
+//                int id1=Integer.parseInt((String) order1.getText());
+//                //get complete order by connectiontoclient
+//                Order order=orderList.getOrder(id1);
+
+                // TODO: get order id here
+
+
+                if(e!=null) {
+                    bundle.putParcelable("Order", e);
+                    bundle.putSerializable("Map", e.getItemsMap());
+                    bundle.putString("Status", e.getStatus().toString());
                     startActivity(intent);
                 }
-
             }
-
         });
     }
-    public void addListenerOnButton2() {
-
-            final Context context = this;
-
-            button = (Button) findViewById(R.id.button2);
-
-            button.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View arg0) {
-
-                    Intent intent = new Intent(context, OrderDetailsActivity.class);
-                    startActivity(intent);
-
-                }
-
-            });
-
-    }
-
+    
     @Override
     protected void onDestroy() {
-//        try {
-//            fileReader.close();
-//            fileWriter.close();
-//            serverSocket.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            fileReader.close();
+            fileWriter.close();
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         super.onDestroy();
     }
 
@@ -216,16 +170,24 @@ public class MainActivity extends AppCompatActivity {
                                         Order order = cur.ReceiveOrder(id);
                                         orderList.addOrder(order,cur);
 
-                                        listView=(ListView) findViewById(R.id.ListView);
+                                        listView= findViewById(R.id.ListView);
                                         ArrayAdapter arrayAdapter2= new ArrayAdapter(context,android.R.layout.simple_list_item_1,orderList.getOrderList());
                                         listView.setAdapter(arrayAdapter2);
                                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                             @Override
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                                                Intent intent = new Intent(getApplicationContext(), OrderDetailsActivity.class);
-                                                startActivity(intent);
+                                                Intent intent = new Intent(context, OrderDetailsActivity.class);
+                                                Bundle bundle=new Bundle();
 
+                                                // TODO: get order id here:
+
+//                                                if(order!=null) {
+//                                                    bundle.putParcelable("Order", order);
+//                                                    bundle.putSerializable("Map", order.getItemsMap());
+//                                                    bundle.putString("Status", order.getStatus().toString());
+//                                                    startActivity(intent);
+//                                                }
                                             }
                                         });
 

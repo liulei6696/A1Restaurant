@@ -96,4 +96,10 @@ public class Order implements Parcelable {
         dest.writeInt(orderId);
         dest.writeString(customerName);
     }
+
+    @Override
+    public String toString(){
+        return "Order ID: "+Integer.toString(orderId) + "   Status: " + status ;
+    }
+
 }
