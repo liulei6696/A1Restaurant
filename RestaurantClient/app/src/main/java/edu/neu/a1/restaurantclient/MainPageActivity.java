@@ -33,7 +33,7 @@ public class MainPageActivity extends AppCompatActivity {
     Order order = new Order(lei.getId());
 
     // servlet
-    Servlet servlet = new Servlet();
+//    Servlet servlet = new Servlet();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,8 +199,8 @@ public class MainPageActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-            servlet.sendOut(order);
-            order = servlet.get();
+//            servlet.sendOut(order);
+//            order = servlet.get();
 
             Intent intent = new Intent(MainPageActivity.this, EditOrderActivity.class);
             Bundle bundle = new Bundle();

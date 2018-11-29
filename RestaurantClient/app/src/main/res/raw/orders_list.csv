@@ -1,3 +1,5 @@
 orderId,customerId,burgerNum,chickenNum,friesNum,ringsNum,totalPrice,status
 1322,1443309,2,3,0,1,44.85,complete
-1330,
+1330,1407537,0,1,2,3,29.25,complete
+1332,1493622,1,0,0,0,6.5,complete
+1333,1493622,1,1,1,2,27.95,complete

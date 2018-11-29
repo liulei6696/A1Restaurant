@@ -32,7 +32,7 @@ public class Order implements Serializable {
 
         this.customerId = customerId;
         status = OrderStatus.Created;
-        orderId = -1; // as created
+        orderId = -1; // as created, if equals -1, don't display
     }
 
     public Map<Item, Integer> getItems(){
@@ -92,9 +92,8 @@ public class Order implements Serializable {
                 itemsMap.get(fries) + "," +
                 itemsMap.get(onionRings) + "," +
                 (itemsMap.get(burger)*burger.getPrice()+itemsMap.get(chicken)*chicken.getPrice()
-                +itemsMap.get(fries)*fries.getPrice()+itemsMap.get(onionRings)*onionRings.getPrice())+ "," +
+                +itemsMap.get(fries)*fries.getPrice()+itemsMap.get(onionRings)*onionRings.getPrice())*1.3+ "," +
                 status;
-
 
     }
 }
