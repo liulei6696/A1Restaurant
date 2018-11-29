@@ -14,7 +14,7 @@ public class Order implements Serializable {
 
     private Map<Item, Integer> itemsMap;
     private int customerId;
-    private String orderId;
+    private int orderId;
     private OrderStatus status;
 
     private final Item burger = new Burger();
@@ -32,6 +32,7 @@ public class Order implements Serializable {
 
         this.customerId = customerId;
         status = OrderStatus.Created;
+        orderId = -1; // as created
     }
 
     public Map<Item, Integer> getItems(){
@@ -46,7 +47,7 @@ public class Order implements Serializable {
         status = newStatus;
     }
 
-    public void setOrderId(String id){ // called by server side after generate an order id
+    public void setOrderId(int id){ // called by server side after generate an order id
         orderId = id;
     }
 
@@ -80,5 +81,20 @@ public class Order implements Serializable {
         if(itemName.equals("onionRing")) return itemsMap.get(onionRings);
 
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return orderId + "," +
+                customerId + "," +
+                itemsMap.get(burger) + ","+
+                itemsMap.get(chicken) + "," +
+                itemsMap.get(fries) + "," +
+                itemsMap.get(onionRings) + "," +
+                (itemsMap.get(burger)*burger.getPrice()+itemsMap.get(chicken)*chicken.getPrice()
+                +itemsMap.get(fries)*fries.getPrice()+itemsMap.get(onionRings)*onionRings.getPrice())+ "," +
+                status;
+
+
     }
 }
