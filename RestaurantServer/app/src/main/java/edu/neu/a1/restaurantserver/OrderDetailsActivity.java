@@ -33,18 +33,12 @@ public class OrderDetailsActivity extends Activity{
         status = (TextView)findViewById(R.id.status);
         confirm = (Button)findViewById(R.id.confirm);
         cancelorder = (Button)findViewById(R.id.cancel);
-        //check=(ScrollView) findViewById(R.id.check);
+//        check=(ScrollView) findViewById(R.id.check);
 
         //getorderdetail
         order=getIntent().getExtras().getParcelable("Order");
         order.setStatus(getIntent().getExtras().getString("Status"));
         order.setItemsMap((HashMap<Item, Integer>) getIntent().getExtras().getSerializable("Map"));
-        /*
-        put the order detail in the layout
-        new a botton to send partially prepared notification
-        Method to send notification   connectionToClient.SendPartialNotificatin(modifiedOrder);
-        */
-
 
         //get connectiontoclient and order
         connectionToClient=MainActivity.orderList.getClient(order.getOrderId());
