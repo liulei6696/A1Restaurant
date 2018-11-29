@@ -224,4 +224,8 @@ public class MainPageActivity extends AppCompatActivity {
         }
     };
 
+    private class UpdateTotalPriceThread extends Thread{
+
+    }
+
 }
