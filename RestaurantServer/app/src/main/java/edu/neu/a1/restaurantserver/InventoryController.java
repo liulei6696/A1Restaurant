@@ -22,6 +22,24 @@ public class InventoryController {
         }
     }
     @SuppressLint("NewApi")
+    public void consumeItems(Map<Item,Integer> ItemMap){
+        for(Item i:ItemMap.keySet()){
+            if(inventory.containsKey(i)){
+                inventory.replace(i,inventory.get(i)-ItemMap.get(i));
+            }
+        }
+        Update();
+    }
+    @SuppressLint("NewApi")
+    public void returnItems(Map<Item,Integer> ItemMap){
+        for(Item i:ItemMap.keySet()){
+            if(inventory.containsKey(i)){
+                inventory.replace(i,inventory.get(i)+ItemMap.get(i));
+            }
+        }
+        Update();
+    }
+    @SuppressLint("NewApi")
     public void Update(){
         for(Item items:inventory.keySet()){
             inventory.replace(items,inventory.get(items),50);

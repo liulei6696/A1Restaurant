@@ -203,7 +203,9 @@ public class MainActivity extends AppCompatActivity {
                                         int id = getOrderID();
                                         Order order = cur.ReceiveOrder(id);
                                         orderList.addOrder(order,cur);
-                                        order1.append(Integer.toString(order.getOrderId()));
+                                        /*
+                                        这里
+                                         */
                                         MainActivity.orderList.getClientAndOrderMap().get(order).SendOrder(order);
                                     }
                                 } catch (IOException e) {

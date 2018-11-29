@@ -40,6 +40,9 @@ public class OrderDetailsActivity extends Activity{
         order.setStatus(getIntent().getExtras().getString("Status"));
         order.setItemsMap((HashMap<Item, Integer>) getIntent().getExtras().getSerializable("Map"));
 
+        /*
+        这里
+         */
         //get connectiontoclient and order
         connectionToClient=MainActivity.orderList.getClient(order.getOrderId());
 

@@ -22,15 +22,18 @@ class SingleOrderThread extends Thread{
         // acquiring the lock
         try {
             sema.acquire();
+            MainActivity.inventoryController.consumeItems(MainActivity.orderList.getOrder(id).getItemsMap());
             orderList.getOrder(id).setStatus(Status.wait);
             orderList.getClientAndOrderMap().get(id).SendOrder(orderList.getOrder(id));
             System.out.println(threadName + " gets a permit.");
             if(orderList.getOrder(id).isBlocked()||orderList.getOrder(id).getStatus()==Status.canceled){
+                MainActivity.inventoryController.returnItems(MainActivity.orderList.getOrder(id).getItemsMap());
                 Thread.interrupted();
             }
             while(this.getState()==State.WAITING) {
                 if(orderList.getOrder(id).isBlocked()||MainActivity.orderList.getOrder(id).getStatus()==Status.canceled){
                     Thread.interrupted();
+                    MainActivity.inventoryController.returnItems(MainActivity.orderList.getOrder(id).getItemsMap());
                 }
             }
             orderList.getOrder(id).setStatus(Status.onProcess);
