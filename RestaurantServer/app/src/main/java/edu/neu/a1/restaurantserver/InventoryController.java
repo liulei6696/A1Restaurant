@@ -28,7 +28,11 @@ public class InventoryController {
                 inventory.replace(i,inventory.get(i)-ItemMap.get(i));
             }
         }
-        Update();
+        try {
+            ModifyInventoryFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @SuppressLint("NewApi")
     public void returnItems(Map<Item,Integer> ItemMap){
@@ -37,7 +41,11 @@ public class InventoryController {
                 inventory.replace(i,inventory.get(i)+ItemMap.get(i));
             }
         }
-        Update();
+        try {
+            ModifyInventoryFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @SuppressLint("NewApi")
     public void Update(){
@@ -94,25 +102,25 @@ public class InventoryController {
         String s=bufferedReader.readLine();
         while (s!=null){
             if(s.contains("Burgers")){
-                int indexofNum=s.lastIndexOf("Burgers")+1;
+                int indexofNum=s.indexOf("Burgers")+8;
                 String num=s.substring(indexofNum);
                 num.trim();
                 inventory.put(new Burger(),Integer.parseInt(num));
             }
             if(s.contains("Chickens")){
-                int indexofNum=s.lastIndexOf("Chickens")+1;
+                int indexofNum=s.indexOf("Chickens")+9;
                 String num=s.substring(indexofNum);
                 num.trim();
                 inventory.put(new Chicken(),Integer.parseInt(num));
             }
             if(s.contains("French Fries")){
-                int indexofNum=s.lastIndexOf("French Fries")+1;
+                int indexofNum=s.indexOf("French Fries")+13;
                 String num=s.substring(indexofNum);
                 num.trim();
                 inventory.put(new FrenchFries(),Integer.parseInt(num));
             }
             if(s.contains("Onion Rings")){
-                int indexofNum=s.lastIndexOf("Onion Rings")+1;
+                int indexofNum=s.indexOf("Onion Rings")+12;
                 String num=s.substring(indexofNum);
                 num.trim();
                 inventory.put(new OnionRing(),Integer.parseInt(num));
