@@ -6,524 +6,649 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="95dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/app_name"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/timg" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="385dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start"
-        android:orientation="horizontal"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Order ID:"
-            />
-
-        <TextView
-            android:id="@+id/burgersNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="385dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Burgers:" />
-
-        <TextView
-            android:id="@+id/BurgersNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Chickens:" />
-
-        <TextView
-            android:id="@+id/chickensNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="French Fries:" />
-
-        <TextView
-            android:id="@+id/FriesNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Onion Rings:" />
-
-        <TextView
-            android:id="@+id/OnionNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="385dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:gravity="end"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
-
-        <Button
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status"
-            app:layout_constraintBottom_creator="1"
-            app:layout_constraintRight_creator="1"
-            app:layout_editor_absoluteX="307dp"
-            app:layout_editor_absoluteY="538dp"
-            tools:layout_editor_absoluteX="307dp"
-            tools:layout_editor_absoluteY="538dp" />
-
-        <Button
-            android:id="@+id/viewdetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Details"
-            app:layout_constraintBottom_creator="1"
-            app:layout_constraintRight_creator="1"
-            app:layout_editor_absoluteX="307dp"
-            app:layout_editor_absoluteY="538dp"
-            tools:layout_editor_absoluteX="307dp"
-            tools:layout_editor_absoluteY="538dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="385dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Order ID:" />
-
-        <TextView
-            android:id="@+id/orderidNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="385dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Burgers:" />
-
-        <TextView
-            android:id="@+id/Burgers2Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Chickens:" />
-
-        <TextView
-            android:id="@+id/chickens2Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="French Fries:" />
-
-        <TextView
-            android:id="@+id/Fries2Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Onion Rings:" />
-
-        <TextView
-            android:id="@+id/Onion2Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="385dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:gravity="end"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-        <Button
-            android:id="@+id/status2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status"
-            app:layout_constraintBottom_creator="1"
-            app:layout_constraintRight_creator="1"
-            app:layout_editor_absoluteX="307dp"
-            app:layout_editor_absoluteY="538dp"
-            tools:layout_editor_absoluteX="307dp"
-            tools:layout_editor_absoluteY="538dp" />
-
-        <Button
-            android:id="@+id/viewdetails2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Details"
-            app:layout_constraintBottom_creator="1"
-            app:layout_constraintRight_creator="1"
-            app:layout_editor_absoluteX="307dp"
-            app:layout_editor_absoluteY="538dp"
-            tools:layout_editor_absoluteX="307dp"
-            tools:layout_editor_absoluteY="538dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout7"
-        android:layout_width="385dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Order ID:" />
-
-        <TextView
-            android:id="@+id/burgers3Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout8"
-        android:layout_width="385dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Burgers:" />
-
-        <TextView
-            android:id="@+id/Burgers3Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Chickens:" />
-
-        <TextView
-            android:id="@+id/chickens3Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="French Fries:" />
-
-        <TextView
-            android:id="@+id/Fries3Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Onion Rings:" />
-
-        <TextView
-            android:id="@+id/Onion3Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout9"
-        android:layout_width="385dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:gravity="end"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
-
-        <Button
-            android:id="@+id/status3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status"
-            app:layout_constraintBottom_creator="1"
-            app:layout_constraintRight_creator="1"
-            app:layout_editor_absoluteX="307dp"
-            app:layout_editor_absoluteY="538dp"
-            tools:layout_editor_absoluteX="307dp"
-            tools:layout_editor_absoluteY="538dp" />
-
-        <Button
-            android:id="@+id/viewdetails3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Details"
-            app:layout_constraintBottom_creator="1"
-            app:layout_constraintRight_creator="1"
-            app:layout_editor_absoluteX="307dp"
-            app:layout_editor_absoluteY="538dp"
-            tools:layout_editor_absoluteX="307dp"
-            tools:layout_editor_absoluteY="538dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout10"
-        android:layout_width="385dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Order ID:" />
-
-        <TextView
-            android:id="@+id/burgers4Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout11"
-        android:layout_width="385dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Burgers:" />
-
-        <TextView
-            android:id="@+id/Burgers4Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Chickens:" />
-
-        <TextView
-            android:id="@+id/chickens4Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="French Fries:" />
-
-        <TextView
-            android:id="@+id/Fries4Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="Onion Rings:" />
-
-        <TextView
-            android:id="@+id/Onion4Num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout12"
-        android:layout_width="385dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:gravity="end"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
-
-        <Button
-            android:id="@+id/status4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status"
-            app:layout_constraintBottom_creator="1"
-            app:layout_constraintRight_creator="1"
-            app:layout_editor_absoluteX="307dp"
-            app:layout_editor_absoluteY="538dp"
-            tools:layout_editor_absoluteX="307dp"
-            tools:layout_editor_absoluteY="538dp" />
-
-        <Button
-            android:id="@+id/viewdetails4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Details"
-            app:layout_constraintBottom_creator="1"
-            app:layout_constraintRight_creator="1"
-            app:layout_editor_absoluteX="307dp"
-            app:layout_editor_absoluteY="538dp"
-            tools:layout_editor_absoluteX="307dp"
-            tools:layout_editor_absoluteY="538dp" />
-
-    </LinearLayout>
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@mipmap/timg" />
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+                <ImageView
+                    android:id="@+id/header1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="0dp"
+                    android:src="@mipmap/tree"
+                    app:layout_editor_absoluteX="0dp"
+                    app:layout_editor_absoluteY="0dp" />
+
+                <TextView
+                    android:id="@+id/order1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="4"
+                    android:text="Order ID:" />
+
+                <TextView
+                    android:id="@+id/orderidNum1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+                <TextView
+                    android:id="@+id/burgerText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Burgers:" />
+
+                <TextView
+                    android:id="@+id/burgers1Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/chickText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Chickens:" />
+
+                <TextView
+                    android:id="@+id/chickens1Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/friesText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="French Fries:" />
+
+                <TextView
+                    android:id="@+id/fries1Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/onionText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Onion Rings:" />
+
+                <TextView
+                    android:id="@+id/Onion1Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="end"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+
+                <TextView
+                    android:id="@+id/priceTotal1"
+                    android:layout_width="146dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="$$ Price:" />
+
+                <Button
+                    android:id="@+id/status1"
+                    style="@android:style/Widget.Material.Button.Inset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status"
+                    app:layout_constraintBottom_creator="1"
+                    app:layout_constraintRight_creator="1"
+                    app:layout_editor_absoluteX="307dp"
+                    app:layout_editor_absoluteY="538dp"
+                    tools:layout_editor_absoluteX="307dp"
+                    tools:layout_editor_absoluteY="538dp" />
+
+                <Button
+                    android:id="@+id/viewdetails1"
+                    style="@android:style/Widget.Holo.Button.Toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Details"
+                    app:layout_constraintBottom_creator="1"
+                    app:layout_constraintRight_creator="1"
+                    app:layout_editor_absoluteX="307dp"
+                    app:layout_editor_absoluteY="538dp"
+                    tools:layout_editor_absoluteX="307dp"
+                    tools:layout_editor_absoluteY="538dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                <ImageView
+                    android:id="@+id/header2"
+                    android:layout_width="20dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="0dp"
+                    android:src="@mipmap/tree"
+                    app:layout_editor_absoluteX="0dp"
+                    app:layout_editor_absoluteY="0dp" />
+
+                <TextView
+                    android:id="@+id/order2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Order ID:" />
+
+                <TextView
+                    android:id="@+id/orderidNum2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+                <TextView
+                    android:id="@+id/burgersText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Burgers:" />
+
+                <TextView
+                    android:id="@+id/Burgers2Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/chickText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Chickens:" />
+
+                <TextView
+                    android:id="@+id/chickens2Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/friesText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="French Fries:" />
+
+                <TextView
+                    android:id="@+id/Fries2Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/onionText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Onion Rings:" />
+
+                <TextView
+                    android:id="@+id/Onion2Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="end"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="$$ Price:" />
+
+                <Button
+                    android:id="@+id/status2"
+                    style="@android:style/Widget.Material.Button.Inset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status"
+                    app:layout_constraintBottom_creator="1"
+                    app:layout_constraintRight_creator="1"
+                    app:layout_editor_absoluteX="307dp"
+                    app:layout_editor_absoluteY="538dp"
+                    tools:layout_editor_absoluteX="307dp"
+                    tools:layout_editor_absoluteY="538dp" />
+
+                <Button
+                    android:id="@+id/viewdetails2"
+                    style="@android:style/Widget.Holo.Button.Toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Details"
+                    app:layout_constraintBottom_creator="1"
+                    app:layout_constraintRight_creator="1"
+                    app:layout_editor_absoluteX="307dp"
+                    app:layout_editor_absoluteY="538dp"
+                    tools:layout_editor_absoluteX="307dp"
+                    tools:layout_editor_absoluteY="538dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+                <ImageView
+                    android:id="@+id/header3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="0dp"
+                    android:src="@mipmap/tree"
+                    app:layout_editor_absoluteX="0dp"
+                    app:layout_editor_absoluteY="0dp" />
+
+                <TextView
+                    android:id="@+id/order3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Order ID:" />
+
+                <TextView
+                    android:id="@+id/orderidNum3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout8"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+                <TextView
+                    android:id="@+id/burgerText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Burgers:" />
+
+                <TextView
+                    android:id="@+id/Burgers3Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/chickText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Chickens:" />
+
+                <TextView
+                    android:id="@+id/chickens3Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/friesText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="French Fries:" />
+
+                <TextView
+                    android:id="@+id/Fries3Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/onionText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Onion Rings:" />
+
+                <TextView
+                    android:id="@+id/Onion3Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout9"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="end"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="$$ Price:" />
+
+                <Button
+                    android:id="@+id/status3"
+                    style="@android:style/Widget.Material.Button.Inset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status"
+                    app:layout_constraintBottom_creator="1"
+                    app:layout_constraintRight_creator="1"
+                    app:layout_editor_absoluteX="307dp"
+                    app:layout_editor_absoluteY="538dp"
+                    tools:layout_editor_absoluteX="307dp"
+                    tools:layout_editor_absoluteY="538dp" />
+
+                <Button
+                    android:id="@+id/viewdetails3"
+                    style="@android:style/Widget.Holo.Button.Toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Details"
+                    app:layout_constraintBottom_creator="1"
+                    app:layout_constraintRight_creator="1"
+                    app:layout_editor_absoluteX="307dp"
+                    app:layout_editor_absoluteY="538dp"
+                    tools:layout_editor_absoluteX="307dp"
+                    tools:layout_editor_absoluteY="538dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout10"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+
+                <ImageView
+                    android:id="@+id/header4"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="0dp"
+                    android:src="@mipmap/tree"
+                    app:layout_editor_absoluteX="0dp"
+                    app:layout_editor_absoluteY="0dp" />
+
+                <TextView
+                    android:id="@+id/order4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Order ID:" />
+
+                <TextView
+                    android:id="@+id/orderidNum4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout11"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
+
+                <TextView
+                    android:id="@+id/burgerText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Burgers:" />
+
+                <TextView
+                    android:id="@+id/Burgers4Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/chickText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Chickens:" />
+
+                <TextView
+                    android:id="@+id/chickens4Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/friesText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="French Fries:" />
+
+                <TextView
+                    android:id="@+id/Fries4Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/onionText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Onion Rings:" />
+
+                <TextView
+                    android:id="@+id/Onion4Num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout12"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="end"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="$$ Price:" />
+
+                <Button
+                    android:id="@+id/status4"
+                    style="@android:style/Widget.Material.Button.Inset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status"
+                    app:layout_constraintBottom_creator="1"
+                    app:layout_constraintRight_creator="1"
+                    app:layout_editor_absoluteX="307dp"
+                    app:layout_editor_absoluteY="538dp"
+                    tools:layout_editor_absoluteX="307dp"
+                    tools:layout_editor_absoluteY="538dp" />
+
+                <Button
+                    android:id="@+id/viewdetails4"
+                    style="@android:style/Widget.Holo.Button.Toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Details"
+                    app:layout_constraintBottom_creator="1"
+                    app:layout_constraintRight_creator="1"
+                    app:layout_editor_absoluteX="307dp"
+                    app:layout_editor_absoluteY="538dp"
+                    tools:layout_editor_absoluteX="307dp"
+                    tools:layout_editor_absoluteY="538dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>
