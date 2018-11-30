@@ -44,16 +44,18 @@ public class OrderDetailsActivity extends Activity{
         orderId.setText(id1);
 
         for(Item i : order.getItemsMap().keySet()) {
-            if (i.toString().equalsIgnoreCase("Burgers")) {
+            System.out.println(i.getName());
+            if (i.getName().contains("Burger")) {
                 burger.setText("burger: " + order.getItemsMap().get(i));
-            } else if (i.toString().equalsIgnoreCase("Chickens")) {
+            } else if (i.getName().contains("Chicken")) {
                 chicken.setText("Chicken: " + order.getItemsMap().get(i));
-            } else if (i.toString().equalsIgnoreCase("French fries")) {
+            } else if (i.getName().contains("French fries")) {
                 fries.setText("French Fries: " + order.getItemsMap().get(i));
-            } else if (i.toString().equalsIgnoreCase("Onion Rings")) {
+            } else if (i.getName().contains("Onion Ring")) {
                 onionrings.setText("Onion Rings: " + order.getItemsMap().get(i));
             }
         }
+        
 //        burger.setText("burger: "+MainActivity.orderList.getOrder(id).getItemsMap().get(burger));
 //        chicken.setText("chicken: "+MainActivity.orderList.getOrder(id).getItemsMap().get(chicken));
 //        fries.setText("french fries: "+MainActivity.orderList.getOrder(id).getItemsMap().get(fries));
