@@ -12,8 +12,11 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
+
+import edu.neu.a1.restaurantclient.item.Burger;
 
 public class MainPageActivity extends AppCompatActivity {
 
@@ -59,6 +62,7 @@ public class MainPageActivity extends AppCompatActivity {
                         burgerNum.setText(order.getItemNum("burger")+"");
                     }
                 });
+                new UpdateTotalPriceThread().start();
             }
         });
         Button minusBurgers = findViewById(R.id.minusBurger);
@@ -72,6 +76,7 @@ public class MainPageActivity extends AppCompatActivity {
                         burgerNum.setText(order.getItemNum("burger")+"");
                     }
                 });
+                new UpdateTotalPriceThread().start();
             }
         });
         Button addChickens = findViewById(R.id.plusChicken);
@@ -85,6 +90,7 @@ public class MainPageActivity extends AppCompatActivity {
                         chickenNum.setText(order.getItemNum("chicken")+"");
                     }
                 });
+                new UpdateTotalPriceThread().start();
             }
         });
         Button minusChickens = findViewById(R.id.minusChicken);
@@ -98,6 +104,7 @@ public class MainPageActivity extends AppCompatActivity {
                         chickenNum.setText(order.getItemNum("chicken")+"");
                     }
                 });
+                new UpdateTotalPriceThread().start();
             }
         });
         Button addFries = findViewById(R.id.plusFries);
@@ -111,6 +118,7 @@ public class MainPageActivity extends AppCompatActivity {
                         friesNum.setText(order.getItemNum("fries")+"");
                     }
                 });
+                new UpdateTotalPriceThread().start();
             }
         });
         Button minusFires = findViewById(R.id.minusFries);
@@ -124,6 +132,7 @@ public class MainPageActivity extends AppCompatActivity {
                         friesNum.setText(order.getItemNum("fries")+"");
                     }
                 });
+                new UpdateTotalPriceThread().start();
             }
         });
         Button addOnionRings = findViewById(R.id.plusOnionRing);
@@ -137,6 +146,7 @@ public class MainPageActivity extends AppCompatActivity {
                         onionRingNum.setText(order.getItemNum("onionRing")+"");
                     }
                 });
+                new UpdateTotalPriceThread().start();
             }
         });
         Button minusOnionRings = findViewById(R.id.minusOnionRing);
@@ -150,6 +160,7 @@ public class MainPageActivity extends AppCompatActivity {
                         onionRingNum.setText(order.getItemNum("onionRing")+"");
                     }
                 });
+                new UpdateTotalPriceThread().start();
             }
         });
 
@@ -216,6 +227,8 @@ public class MainPageActivity extends AppCompatActivity {
 
 //            new SendOrderAndRefreshOrderThread().run();
 
+            // TODO: save order to file
+
             Intent intent = new Intent(MainPageActivity.this, EditOrderActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("order",order);
@@ -223,5 +236,21 @@ public class MainPageActivity extends AppCompatActivity {
             startActivity(intent);
         }
     };
+
+    private class UpdateTotalPriceThread extends Thread {
+
+        double tp =(order.getItemNum("burger")*5.0 +order.getItemNum("chicken")*7.0
+                +order.getItemNum("fries")*2.5+order.getItemNum("onionRing")*3.5)*1.3;
+
+        @Override
+        public void run(){
+            MainPageActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    totalPrice.setText(new DecimalFormat("#.00").format(tp));
+                }
+            });
+        }
+    }
 
 }

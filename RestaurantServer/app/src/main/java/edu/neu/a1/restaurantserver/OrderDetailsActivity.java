@@ -34,12 +34,13 @@ public class OrderDetailsActivity extends Activity{
         status = (TextView)findViewById(R.id.status);
         confirm = (Button)findViewById(R.id.confirm);
         cancelorder = (Button)findViewById(R.id.cancel);
-//        check=(ScrollView) findViewById(R.id.check);
+
 
         //getorderdetail
-        id= (int) getIntent().getExtras().get("ID");
+        String id1=getIntent().getStringExtra("id");
+        id=Integer.parseInt(id1);
         order=MainActivity.orderList.getOrder(id);
-        orderId.setText(id);
+        orderId.setText(id1);
 
         /*
         这里
@@ -68,9 +69,9 @@ public class OrderDetailsActivity extends Activity{
 //            }
 //            connectionToClient.SendPartialNotificatin(modifiedOrder);
 //        }
-
-        addListenerOnConfirm();
-        addListenerOnBack();
+//
+//        addListenerOnConfirm();
+//        addListenerOnBack();
     }
 
     private boolean CheckIfEnough() {

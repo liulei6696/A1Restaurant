@@ -234,6 +234,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_weight="1"
+            android:textColor="@color/colorLightGrey"
             android:background="@color/colorPrimary"
             android:text="Confirm" />
 
@@ -245,6 +246,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_weight="1"
+            android:textColor="@color/colorLightGrey"
             android:background="@color/colorAccent"
             android:text="Cancel" />
     </LinearLayout>

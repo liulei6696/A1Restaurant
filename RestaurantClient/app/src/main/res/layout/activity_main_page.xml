@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
         android:text="@string/restaurant_name"
         android:textColor="@color/colorGold"
         android:textSize="28sp"/>
@@ -29,7 +30,8 @@
         android:shadowDy="10"
         android:shadowRadius="3.0"
         android:shadowColor="@color/colorLightGrey"
-        android:paddingLeft="@dimen/activity_horizontal_margin"/>
+        android:layout_marginRight="80dp"
+        android:layout_marginLeft="80dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,15 +43,17 @@
         android:shadowDy="10"
         android:shadowRadius="3.0"
         android:shadowColor="@color/colorLightGrey"
-        android:paddingLeft="@dimen/activity_horizontal_margin"/>
+        android:layout_marginRight="80dp"
+        android:layout_marginLeft="80dp"/>
 
     <View
-        android:layout_width="500dp"
-        android:layout_height="2dp"
-        android:paddingTop="10dp"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:background="@color/colorDeepGrey"/>
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/colorLightGrey"/>
 
 
     <!--Items list-->
@@ -58,7 +62,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
-        android:paddingTop="20dp"
+        android:layout_marginTop="50dp"
         android:orientation="vertical">
 
         <!-- burgers -->
@@ -107,17 +111,23 @@
                     android:id="@+id/minusBurger"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="5dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="10dp"
                     android:background="@drawable/minus" />
+
+                <TextView
+                    android:id="@+id/burgerNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
 
                 <Button
                     android:id="@+id/plusBurger"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/plus"
-                    android:paddingLeft="5dp" />
+                    android:background="@drawable/plus" />
 
             </LinearLayout>
 
@@ -170,17 +180,24 @@
                     android:id="@+id/minusChicken"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:paddingTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/minus" />
+
+                <TextView
+                    android:id="@+id/chickenNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
 
                 <Button
                     android:id="@+id/plusChicken"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/plus"
-                    android:paddingLeft="10dp" />
+                    android:background="@drawable/plus" />
             </LinearLayout>
 
 
@@ -233,17 +250,24 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:paddingTop="10dp"
-                    android:paddingLeft="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/minus" />
+
+                <TextView
+                    android:id="@+id/friesNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
 
                 <Button
                     android:id="@+id/plusFries"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/plus"
-                    android:paddingLeft="10dp" />
+                    android:background="@drawable/plus" />
             </LinearLayout>
 
 
@@ -295,17 +319,24 @@
                     android:id="@+id/minusOnionRing"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:paddingTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/minus" />
+
+                <TextView
+                    android:id="@+id/onionRingNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
 
                 <Button
                     android:id="@+id/plusOnionRing"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/plus"
-                    android:paddingLeft="10dp" />
+                    android:background="@drawable/plus" />
             </LinearLayout>
 
 
@@ -321,134 +352,148 @@
         android:paddingBottom="10dp"
         android:layout_gravity="center_vertical">
 
-        <!-- line 1 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingRight="130dp"
-            android:paddingLeft="130dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+        <!--&lt;!&ndash; line 1 &ndash;&gt;-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingTop="10dp"-->
+            <!--android:paddingRight="130dp"-->
+            <!--android:paddingLeft="130dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_gravity="center_horizontal">-->
 
-            <TextView
-                android:layout_weight="4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/item1"/>
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="x"/>
-            <TextView
-                android:id="@+id/burgerNum"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"/>
-        </LinearLayout>
+            <!--<TextView-->
+                <!--android:layout_weight="4"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/item1"/>-->
+            <!--<TextView-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="x"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/burgerNum"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="0"/>-->
+        <!--</LinearLayout>-->
 
-        <!-- line 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:paddingRight="130dp"
-            android:paddingLeft="130dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+        <!--&lt;!&ndash; line 2 &ndash;&gt;-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:paddingRight="130dp"-->
+            <!--android:paddingLeft="130dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_gravity="center_horizontal">-->
 
-            <TextView
-                android:layout_weight="4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/item2"/>
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="x"/>
-            <TextView
-                android:id="@+id/chickenNum"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"/>
-        </LinearLayout>
+            <!--<TextView-->
+                <!--android:layout_weight="4"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/item2"/>-->
+            <!--<TextView-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="x"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/chickenNum"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="0"/>-->
+        <!--</LinearLayout>-->
 
-        <!-- line 3 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:paddingRight="130dp"
-            android:paddingLeft="130dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+        <!--&lt;!&ndash; line 3 &ndash;&gt;-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:paddingRight="130dp"-->
+            <!--android:paddingLeft="130dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_gravity="center_horizontal">-->
 
-            <TextView
-                android:layout_weight="4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/item3"/>
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="x"/>
-            <TextView
-                android:id="@+id/friesNum"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"/>
-        </LinearLayout>
+            <!--<TextView-->
+                <!--android:layout_weight="4"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/item3"/>-->
+            <!--<TextView-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="x"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/friesNum"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="0"/>-->
+        <!--</LinearLayout>-->
 
-        <!-- line 4 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:paddingRight="130dp"
-            android:paddingLeft="130dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+        <!--&lt;!&ndash; line 4 &ndash;&gt;-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:paddingRight="130dp"-->
+            <!--android:paddingLeft="130dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_gravity="center_horizontal">-->
 
-            <TextView
-                android:layout_weight="4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/item4"/>
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="x"/>
-            <TextView
-                android:id="@+id/onionRingNum"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"/>
-        </LinearLayout>
+            <!--<TextView-->
+                <!--android:layout_weight="4"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/item4"/>-->
+            <!--<TextView-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="x"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/onionRingNum"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="0"/>-->
+        <!--</LinearLayout>-->
 
         <!-- total -->
         <LinearLayout
             android:paddingTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="250dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="200dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total:  $ "/>
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorRed"
+                android:text="Total:  "/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="$"/>
 
             <TextView
                 android:id="@+id/totalPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:layout_marginLeft="5dp"
                 android:text="0.0"/>
         </LinearLayout>
 
@@ -465,11 +510,13 @@
             android:id="@+id/placeOrder"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/place_order_round"
             android:textColor="@color/colorGreyWhite"
+            android:textStyle="bold"
             android:text="place order"/>
 
         <LinearLayout
@@ -480,9 +527,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
             android:orientation="horizontal">
 
             <Button

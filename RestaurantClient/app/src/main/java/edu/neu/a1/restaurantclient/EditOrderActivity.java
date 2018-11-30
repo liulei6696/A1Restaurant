@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class EditOrderActivity extends Activity {
 
-    TextView burg, chick, fries, rings, Status;
+    TextView burg, chick, fries, rings, Status, editOrder;
     Button confirm, cancel, orderList, main;
 
     @Override
@@ -22,6 +22,7 @@ public class EditOrderActivity extends Activity {
         chick = (TextView)findViewById(R.id.ChickNum);
         fries = (TextView)findViewById(R.id.FriesNum);
         rings = (TextView)findViewById(R.id.RingsNum);
+        editOrder = findViewById(R.id.order_id);
 
         new RefreshQuantitiesTextViewsThread(getIntent()).start();
 
@@ -114,7 +115,7 @@ public class EditOrderActivity extends Activity {
             burg.setText(order.getItemNum("burger")+"");
             chick.setText(order.getItemNum("chicken")+"");
             fries.setText(order.getItemNum("fries")+"");
-            rings.setText(order.getItemNum("onionRings")+"");
+            rings.setText(order.getItemNum("onionRing")+"");
 
         }
     }

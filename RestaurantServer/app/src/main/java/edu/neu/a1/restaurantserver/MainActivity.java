@@ -36,19 +36,19 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-    File file=new File("Inventory.txt");
-    FileReader fileReader;
-    FileWriter fileWriter;
-    BufferedReader bufferedReader;
-    ServerSocket serverSocket;
-
-    {
-        try {
-            serverSocket = new ServerSocket(8080);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    File file=new File("Inventory.txt");
+//    FileReader fileReader;
+//    FileWriter fileWriter;
+//    BufferedReader bufferedReader;
+//    ServerSocket serverSocket;
+//
+//    {
+//        try {
+//            serverSocket = new ServerSocket(8080);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
     private static int OrderID=0;
     static InventoryController inventoryController;
     static Set<ConnectionToClient> set=new HashSet<>();
@@ -62,16 +62,16 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main1_listview);
-        try {
-            fileReader=new FileReader(file);
-            fileWriter=new FileWriter(file);
-            bufferedReader=new BufferedReader(fileReader);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        inventoryController=new InventoryController(bufferedReader,fileWriter);
+//        try {
+//            fileReader=new FileReader(file);
+//            fileWriter=new FileWriter(file);
+//            bufferedReader=new BufferedReader(fileReader);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        inventoryController=new InventoryController(bufferedReader,fileWriter);
 
         Semaphore semaphore=new Semaphore(4);
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         HashMap<Item,Integer> hh=new HashMap<>();
         hh.put(new Burger(),1);
         final Order e=new Order(hh);
-        orderList.getOrderList().add(e);
+        //orderList.getOrderList().add(e);
         orderList.addOrder(e,null);
         //
 
@@ -125,28 +125,28 @@ public class MainActivity extends AppCompatActivity {
 
 
                 // TODO: get order id here:
-                String idString=listView.getItemAtPosition(position).toString().substring(10,15);
-                idString.trim();
+                String idString=listView.getItemAtPosition(position).toString().substring(10,15).trim();
+                System.out.println(idString);
+
                 if(idString!=null) {
-                    bundle.putInt("ID",Integer.parseInt(idString));
-                    intent.putExtras(bundle);
+                    intent.putExtra("id",idString);
                     startActivity(intent);
                 }
             }
         });
     }
     
-    @Override
-    protected void onDestroy() {
-        try {
-            fileReader.close();
-            fileWriter.close();
-            serverSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        super.onDestroy();
-    }
+//    @Override
+//    protected void onDestroy() {
+//        try {
+//            fileReader.close();
+//            fileWriter.close();
+//            serverSocket.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        super.onDestroy();
+//    }
 
 
 //    private class ServerSocketThread extends Thread {
