@@ -41,7 +41,7 @@ public class OrderDetailsActivity extends Activity{
         String id1=getIntent().getStringExtra("id");
         id=Integer.parseInt(id1);
         order=MainActivity.orderList.getOrder(id);
-        orderId.setText(id1);
+        orderId.setText("Order ID: "+id1);
 
         burger.setText("burgers: "+0);
         chicken.setText("Chiecken: "+0);
