@@ -17,7 +17,7 @@ public class OrderDetailsActivity extends Activity{
 
     TextView msg, orderId, burger, chicken, status, fries, onionrings;
     ScrollView check;
-    Button confirm, cancelorder, back;
+    Button confirm, cancelorder, back, sendModifyRequest;
     Order order;
     int id;
     ConnectionToClient connectionToClient;
@@ -34,6 +34,7 @@ public class OrderDetailsActivity extends Activity{
         status = (TextView)findViewById(R.id.status);
         confirm = (Button)findViewById(R.id.confirm);
         cancelorder = (Button)findViewById(R.id.cancel);
+//        sendModifyRequest = (Button)findViewById(R.id.sendRequest);
 
 
         //getorderdetail
@@ -42,11 +43,26 @@ public class OrderDetailsActivity extends Activity{
         order=MainActivity.orderList.getOrder(id);
         orderId.setText(id1);
 
+//        burger.setText("burger: "+MainActivity.orderList.getOrder(id).getItemsMap().get(burger));
+//        chicken.setText("chicken: "+MainActivity.orderList.getOrder(id).getItemsMap().get(chicken));
+//        fries.setText("french fries: "+MainActivity.orderList.getOrder(id).getItemsMap().get(fries));
+//        onionrings.setText("onion rings: "+MainActivity.orderList.getOrder(id).getItemsMap().get(onionrings));
+//        status.setText("status: "+MainActivity.orderList.getOrder(id).getStatus());
+
+//        burger.setText("burger: "+connectionToClient.getOrder().getItemsMap().get(burger));
+//        chicken.setText("chicken: "+connectionToClient.getOrder().getItemsMap().get(chicken));
+//        fries.setText("french fries: "+connectionToClient.getOrder().getItemsMap().get(fries));
+//        onionrings.setText("onion rings: "+connectionToClient.getOrder().getItemsMap().get(onionrings));
+//        status.setText("status: "+MainActivity.orderList.getOrder(id).getStatus());
+
+
+
         /*
         这里
          */
         //get connectiontoclient and order
 //        connectionToClient=MainActivity.orderList.getClient(order.getOrderId());
+
 //
 //        boolean enough=CheckIfEnough();
 //        if(enough){
@@ -72,11 +88,27 @@ public class OrderDetailsActivity extends Activity{
 //
 //        addListenerOnConfirm();
 //        addListenerOnBack();
+//        addListenerOnSendModifyRequest();
+
     }
 
     private boolean CheckIfEnough() {
         return MainActivity.inventoryController.IfEnough(order.getItemsMap());
     }
+
+//    public void addListenerOnSendModifyRequest(){
+//        final Context context = this;
+//        sendModifyRequest = (Button) findViewById(R.id.sendRequest);
+//
+//        sendModifyRequest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(CheckIfEnough()== false){
+//                    connectionToClient.SendPartialNotificatin(order);
+//                }
+//            }
+//        });
+//    }
 
     public void addListenerOnConfirm(){
 

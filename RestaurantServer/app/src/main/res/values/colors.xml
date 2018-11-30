@@ -5,4 +5,5 @@
     <color name="colorAccent">#d7254b</color>
     <color name="primary_white">#FFFFFFFF</color>
     <color name="primary_black">#D5000000</color>
+    <color name="primary_purple">#c9c5f0</color>
 </resources>
