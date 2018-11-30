@@ -43,6 +43,10 @@ public class OrderDetailsActivity extends Activity{
         order=MainActivity.orderList.getOrder(id);
         orderId.setText(id1);
 
+        burger.setText("burgers: "+0);
+        chicken.setText("Chiecken: "+0);
+        fries.setText("French Fires: "+0);
+        onionrings.setText("Onion Rings: "+0);
         for(Item i : order.getItemsMap().keySet()) {
             System.out.println(i.getName());
             if (i.getName().contains("Burger")) {
@@ -55,6 +59,7 @@ public class OrderDetailsActivity extends Activity{
                 onionrings.setText("Onion Rings: " + order.getItemsMap().get(i));
             }
         }
+        status.setText("Status: "+MainActivity.orderList.getOrder(id).getStatus());
         
 //        burger.setText("burger: "+MainActivity.orderList.getOrder(id).getItemsMap().get(burger));
 //        chicken.setText("chicken: "+MainActivity.orderList.getOrder(id).getItemsMap().get(chicken));
