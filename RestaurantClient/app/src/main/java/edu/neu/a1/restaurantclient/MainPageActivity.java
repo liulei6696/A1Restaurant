@@ -170,7 +170,7 @@ public class MainPageActivity extends AppCompatActivity {
         Button orderList = findViewById(R.id.orderList);
         Button customer = findViewById(R.id.customer);
 
-        placeOrder.setOnClickListener(PlaceOrderOnClickListener);
+        placeOrder.setOnClickListener(placeOrderOnClickListener);
 
         orderList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,8 +210,8 @@ public class MainPageActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-//            servlet.sendOut(order);
-//            order = servlet.get();
+            Servlet.getServlet().sendOut(order);
+            String orderString = Servlet.getServlet().get();
 
             Intent intent = new Intent(MainPageActivity.this, EditOrderActivity.class);
             Bundle bundle = new Bundle();
@@ -221,7 +221,7 @@ public class MainPageActivity extends AppCompatActivity {
         }
     }
 
-    View.OnClickListener PlaceOrderOnClickListener = new View.OnClickListener() { // send order to server and send order to next page
+    View.OnClickListener placeOrderOnClickListener = new View.OnClickListener() { // send order to server and send order to next page
         @Override
         public void onClick(View v) {
 

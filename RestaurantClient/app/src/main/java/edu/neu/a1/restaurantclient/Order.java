@@ -93,7 +93,7 @@ public class Order implements Serializable {
                 itemsMap.get(onionRings) + "," +
                 (itemsMap.get(burger)*burger.getPrice()+itemsMap.get(chicken)*chicken.getPrice()
                 +itemsMap.get(fries)*fries.getPrice()+itemsMap.get(onionRings)*onionRings.getPrice())*1.3+ "," +
-                status;
+                status+"\n";
 
     }
 }

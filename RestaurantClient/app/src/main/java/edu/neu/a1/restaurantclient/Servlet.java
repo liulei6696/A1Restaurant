@@ -14,17 +14,26 @@ import java.net.Socket;
 
 public class Servlet { // send and receive order as strings
 
-    Socket socket = ClientSocket.getSocket();
-    BufferedReader in;
-    PrintWriter out;
+    static Socket socket = ClientSocket.getSocket();
+    static BufferedReader in;
+    static PrintWriter out;
+    static Servlet servlet;
 
-    public Servlet(){ // constructor to get input stream and output stream from socket
+    private Servlet(){ // constructor to get input stream and output stream from socket
         try{
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream());
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public static Servlet getServlet(){
+        if(servlet == null){
+            servlet = new Servlet();
+        }
+
+        return servlet;
     }
 
     public void sendOut(final Order order){
@@ -59,6 +68,7 @@ public class Servlet { // send and receive order as strings
         public void run() {
 
             out.write(order.toString());
+            out.flush();
 
         }
     }
