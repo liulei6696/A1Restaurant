@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class EditOrderActivity extends Activity {
 
-    TextView burg, chick, fries, rings, Status, editOrder;
+    TextView burg, chick, fries, rings, Status, totalPrice, editOrder;
     Button confirm, cancel, orderList, main;
 
     @Override
@@ -22,6 +22,7 @@ public class EditOrderActivity extends Activity {
         chick = (TextView)findViewById(R.id.ChickNum);
         fries = (TextView)findViewById(R.id.FriesNum);
         rings = (TextView)findViewById(R.id.RingsNum);
+        totalPrice = findViewById(R.id.edit_order_totalPrice);
         editOrder = findViewById(R.id.order_id);
 
         new RefreshQuantitiesTextViewsThread(getIntent()).start();
@@ -110,12 +111,19 @@ public class EditOrderActivity extends Activity {
 
         @Override
         public void run() {
-            Order order = (Order) intent.getSerializableExtra("order");
+//            Order order = (Order) intent.getSerializableExtra("order");
+            String order = intent.getStringExtra("orderString");
+            String[] strs = order.split(",");
 
-            burg.setText(order.getItemNum("burger")+"");
-            chick.setText(order.getItemNum("chicken")+"");
-            fries.setText(order.getItemNum("fries")+"");
-            rings.setText(order.getItemNum("onionRing")+"");
+            burg.setText(strs[2]);
+            chick.setText(strs[3]);
+            fries.setText(strs[4]);
+            rings.setText(strs[5]);
+            totalPrice.setText(strs[6]);
+            Status.setText(strs[7]);
+
+            if(strs[0].equals("-1")){editOrder.setText(" ");}
+            else editOrder.setText(strs[0]);
 
         }
     }

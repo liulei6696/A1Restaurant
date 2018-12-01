@@ -1,6 +1,7 @@
 package edu.neu.a1.restaurantclient;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,15 +86,18 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
+        double total = (itemsMap.get(burger)*burger.getPrice()+itemsMap.get(chicken)*chicken.getPrice()
+                +itemsMap.get(fries)*fries.getPrice()+itemsMap.get(onionRings)*onionRings.getPrice())*1.3;
+        DecimalFormat format = new DecimalFormat("0.00");
+
         return orderId + "," +
                 customerId + "," +
                 itemsMap.get(burger) + ","+
                 itemsMap.get(chicken) + "," +
                 itemsMap.get(fries) + "," +
                 itemsMap.get(onionRings) + "," +
-                (itemsMap.get(burger)*burger.getPrice()+itemsMap.get(chicken)*chicken.getPrice()
-                +itemsMap.get(fries)*fries.getPrice()+itemsMap.get(onionRings)*onionRings.getPrice())*1.3+ "," +
-                status+"\n";
+                format.format(total)+ "," +
+                status;
 
     }
 }

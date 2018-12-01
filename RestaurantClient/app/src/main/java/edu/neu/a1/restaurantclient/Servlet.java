@@ -36,7 +36,7 @@ public class Servlet { // send and receive order as strings
         return servlet;
     }
 
-    public void sendOut(final Order order){
+    public void sendOut(String order){
 
         new SendOrderThread(order).start();
 
@@ -58,39 +58,20 @@ public class Servlet { // send and receive order as strings
 
     private class SendOrderThread extends Thread{
 
-        Order order;
+        String order;
 
-        SendOrderThread(Order order){
+        SendOrderThread(String order){
             this.order = order;
         }
 
         @Override
         public void run() {
 
-            out.write(order.toString());
+            out.write(order);
             out.flush();
 
         }
     }
 
-//    private class GetOrderThread extends Thread{
-//
-//        Order newOrder = null;
-//
-//        GetOrderThread(Order order){
-//            newOrder = order;
-//        }
-//
-//        @Override
-//        public void run() {
-//            try{
-//                newOrder = (Order) inputStream.readObject();
-//            }catch (IOException e){
-//                e.printStackTrace();
-//            }catch (ClassNotFoundException e){
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
 }

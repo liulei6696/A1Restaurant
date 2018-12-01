@@ -144,6 +144,7 @@
                 android:id="@+id/Status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Created"
                 android:layout_weight="0.5"
                 android:textSize="24sp" />
 
@@ -159,8 +160,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="5" />
 
-
-
         </LinearLayout>
 
     </LinearLayout>
@@ -170,6 +169,25 @@
         android:layout_height="0dp"
         android:layout_weight="0.3"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:text="Total: $"/>
+
+            <TextView
+                android:id="@+id/edit_order_totalPrice"
+                android:layout_marginLeft="10dp"
+                android:text="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -182,8 +200,7 @@
 
         <TextView
             android:id="@+id/partial_detail"
-            android:paddingLeft="55dp"
-            android:paddingRight="55dp"
+            android:layout_marginLeft="30dp"
             android:paddingTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -234,6 +251,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_weight="1"
+            android:visibility="invisible"
             android:textColor="@color/colorLightGrey"
             android:background="@color/colorPrimary"
             android:text="Confirm" />

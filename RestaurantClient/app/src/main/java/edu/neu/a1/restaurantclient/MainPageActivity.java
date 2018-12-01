@@ -1,5 +1,6 @@
 package edu.neu.a1.restaurantclient;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
@@ -42,6 +48,9 @@ public class MainPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+
+        // run at the first time, don't run at the second time
+//        clearBufferedData();
 
         // find text views
         burgerNum = findViewById(R.id.burgerNum);
@@ -170,7 +179,19 @@ public class MainPageActivity extends AppCompatActivity {
         Button orderList = findViewById(R.id.orderList);
         Button customer = findViewById(R.id.customer);
 
-        placeOrder.setOnClickListener(placeOrderOnClickListener);
+        placeOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                new SendOrderAndRefreshOrderThread(MainPageActivity.this).run();
+
+                saveOrderStringToFile(order.toString(), MainPageActivity.this);
+
+                Intent intent = new Intent(MainPageActivity.this, EditOrderActivity.class);
+                intent.putExtra("orderString", order.toString());
+                startActivity(intent);
+            }
+        });
 
         orderList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +200,7 @@ public class MainPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
 //    private class ConnectToServerThread extends Thread{
@@ -203,39 +225,101 @@ public class MainPageActivity extends AppCompatActivity {
 //        }
 //    }
 
+    class SendOrderAndRefreshOrderThread extends Thread{
 
+        Context context;
 
-    private class SendOrderAndRefreshOrderThread extends Thread{
+        public SendOrderAndRefreshOrderThread(Context context){
+            this.context = context;
+        }
 
         @Override
         public void run() {
+            Servlet.getServlet().sendOut(order.toString());
+            updateOrderInFile(Servlet.getServlet().get());
+        }
 
-            Servlet.getServlet().sendOut(order);
-            String orderString = Servlet.getServlet().get();
+        private void updateOrderInFile(String order){
+            StringBuffer sb = new StringBuffer();
+            try {
+                // read out contents
+                FileInputStream inOrderList = context.openFileInput("order_list.csv");
+                InputStreamReader inOrderListReader = new InputStreamReader(inOrderList, "UTF-8");
+                BufferedReader br = new BufferedReader(inOrderListReader);
+                String line;
+                while ((line = br.readLine()) != null) {
+                    if(match(line, order)){
+                        sb.append(order).append("\n");
+                    }else
+                        sb.append(line).append("\n");
+                }
+                // write in order
+                FileOutputStream outputStream = context.openFileOutput("order_list.csv", MODE_PRIVATE);
+                outputStream.write(sb.toString().getBytes());
+                outputStream.flush();
 
-            Intent intent = new Intent(MainPageActivity.this, EditOrderActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("order",order);
-            intent.putExtras(bundle);
-            startActivity(intent);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
+        private boolean match(String old, String a){
+            String[] olds = old.split(",");
+            String[] as = a.split(",");
+
+            if(olds[0].equals("-1"))
+                if(olds[2].equals(as[2])&&olds[3].equals(as[3])&&olds[4].equals(as[4])&&olds[5].equals(as[5]))
+                    return true;
+
+            return false;
         }
     }
 
-    View.OnClickListener placeOrderOnClickListener = new View.OnClickListener() { // send order to server and send order to next page
-        @Override
-        public void onClick(View v) {
+    private void clearBufferedData(){
 
-//            new SendOrderAndRefreshOrderThread().run();
-
-            // TODO: save order to file
-
-            Intent intent = new Intent(MainPageActivity.this, EditOrderActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("order",order);
-            intent.putExtras(bundle);
-            startActivity(intent);
+        // initialize application data file using file in raw folder, will clear history
+        try{
+            FileOutputStream outputStream = openFileOutput("order_list.csv", MODE_PRIVATE);
+            InputStream rawIn = getResources().openRawResource(R.raw.orders_list);
+            BufferedReader br = new BufferedReader(new InputStreamReader(rawIn,"UTF-8"));
+            String line;
+            while((line=br.readLine())!=null){
+                byte[] bytes = (line+"\n").getBytes();
+                outputStream.write(bytes);
+                outputStream.flush();
+            }
+            outputStream.close();
+        }catch (IOException e){
+            e.printStackTrace();
         }
-    };
+    }
+
+
+
+    private void saveOrderStringToFile(String order, Context context){
+
+        try {
+//            // read out contents
+//            FileInputStream inOrderList = context.openFileInput("order_list.csv");
+//            InputStreamReader inOrderListReader = new InputStreamReader(inOrderList, "UTF-8");
+//            BufferedReader br = new BufferedReader(inOrderListReader);
+//            String line;
+//            while((line=br.readLine())!=null){
+//                sb.append(line);
+//            }
+//            sb.append(order);
+
+            // write in order
+            FileOutputStream outputStream = context.openFileOutput("order_list.csv", MODE_APPEND);
+            outputStream.write((order+"\n").getBytes());
+            outputStream.flush();
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+    }
 
     private class UpdateTotalPriceThread extends Thread {
 
