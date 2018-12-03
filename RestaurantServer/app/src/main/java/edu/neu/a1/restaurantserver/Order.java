@@ -4,15 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Order implements Parcelable {
 
     private int orderId;
     private static int count=1;
-    private String customerName;
+    private int customerId;
     private HashMap<Item,Integer> itemsMap;
     private Status status;
     private  boolean isBlocked=false;
+    private double price=0;
 
 
     public  Order(){
@@ -47,7 +49,7 @@ public class Order implements Parcelable {
 
     protected Order(Parcel in) {
         orderId = in.readInt();
-        customerName = in.readString();
+        customerId=in.readInt();
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {
@@ -66,16 +68,17 @@ public class Order implements Parcelable {
         return orderId;
     }
 
+
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public Status getStatus() {
@@ -94,12 +97,50 @@ public class Order implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(orderId);
-        dest.writeString(customerName);
+        dest.writeInt(customerId);
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     @Override
     public String toString(){
         return "Order ID: "+Integer.toString(orderId) + "       Status: " + status ;
     }
-
+    public static Order convertOrder(String orderString){
+        Order returnOrder=new Order();
+        String[] order=orderString.split(",");
+        returnOrder.setOrderId(Integer.parseInt(order[0].trim()));
+        returnOrder.setCustomerId(Integer.parseInt(order[1].trim()));
+        Map<Item,Integer> map=new HashMap<>();
+        map.put(new Burger(),Integer.parseInt(order[2].trim()));
+        map.put(new Chicken(),Integer.parseInt(order[3].trim()));
+        map.put(new FrenchFries(),Integer.parseInt(order[4].trim()));
+        map.put(new OnionRing(),Integer.parseInt(order[5].trim()));
+        returnOrder.setItemsMap((HashMap<Item, Integer>) map);
+        returnOrder.price=Double.parseDouble(order[6].trim());
+        returnOrder.setStatus(order[7].trim());
+        return returnOrder;
+    }
+    public static String packageOrder(Order order){
+        StringBuilder s=new StringBuilder();
+        int bur=0,chi=0,fre=0,oni=0;
+        for(Item i:order.getItemsMap().keySet()){
+            if(i.getName().contains("Burger")){
+                bur=order.getItemsMap().get(i);
+            }
+            else if(i.getName().contains("Chicken")){
+                chi=order.getItemsMap().get(i);
+            }
+            else if(i.getName().contains("FrenchFries")){
+                fre=order.getItemsMap().get(i);
+            }
+            else if(i.getName().contains("OnionRing")){
+                oni=order.getItemsMap().get(i);
+            }
+        }
+        s.append(order.getOrderId()).append(",").append(order.getCustomerId()).append(",").append(bur).append(",").append(chi).append(",").append(fre).append(",").append(oni).append(",").append(order.getPrice()).append(",").append(order.getStatus().toString());
+        return s.toString();
+    }
 }

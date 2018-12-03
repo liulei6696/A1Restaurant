@@ -28,18 +28,19 @@ class SingleOrderThread extends Thread{
             System.out.println(threadName + " gets a permit.");
             if(orderList.getOrder(id).isBlocked()||orderList.getOrder(id).getStatus()==Status.canceled){
                 MainActivity.inventoryController.returnItems(MainActivity.orderList.getOrder(id).getItemsMap());
+                orderList.getClientAndOrderMap().get(id).SendOrder(orderList.getOrder(id));
                 Thread.interrupted();
             }
             while(this.getState()==State.WAITING) {
                 if(orderList.getOrder(id).isBlocked()||MainActivity.orderList.getOrder(id).getStatus()==Status.canceled){
-                    Thread.interrupted();
                     MainActivity.inventoryController.returnItems(MainActivity.orderList.getOrder(id).getItemsMap());
+                    orderList.getClientAndOrderMap().get(id).SendOrder(orderList.getOrder(id));
+                    Thread.interrupted();
                 }
             }
             orderList.getOrder(id).setStatus(Status.onProcess);
             orderList.getClientAndOrderMap().get(id).SendOrder(orderList.getOrder(id));
             kitchen.cook();
-            //orderlist.setState()
             kitchen.prepare();
             orderList.getOrder(id).setStatus(Status.ready);
             orderList.getClientAndOrderMap().get(id).SendOrder(orderList.getOrder(id));

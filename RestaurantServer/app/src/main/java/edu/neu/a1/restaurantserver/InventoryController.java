@@ -3,20 +3,31 @@ package edu.neu.a1.restaurantserver;
 import android.annotation.SuppressLint;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class InventoryController {
     Map<Item,Integer> inventory;
+    InputStreamReader inputStreamReader;
+    OutputStreamWriter outputStreamWriter;
     BufferedReader bufferedReader;
-    FileWriter fileWriter;
-    InventoryController(BufferedReader bufferedReader, FileWriter fileWriter){
-        this.bufferedReader=bufferedReader;
-        this.fileWriter=fileWriter;
+    InventoryController(InputStreamReader inputStreamReader, OutputStreamWriter outputStreamWriter){
+//        fileInputStream=bufferedReader;
+//        fileOutputStream=fileWriter;
+        this.inputStreamReader=inputStreamReader;
+        this.outputStreamWriter=outputStreamWriter;
+        this.bufferedReader=new BufferedReader(inputStreamReader);
+        inventory=new HashMap<>();
         try {
-            init(this.bufferedReader);
+            init(bufferedReader);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -24,8 +35,8 @@ public class InventoryController {
     @SuppressLint("NewApi")
     public void consumeItems(Map<Item,Integer> ItemMap){
         for(Item i:ItemMap.keySet()){
-            if(inventory.containsKey(i)){
-                inventory.replace(i,inventory.get(i)-ItemMap.get(i));
+            if(inventory.containsKey(convert(i.toString()))){
+                inventory.replace(convert(i.toString()),inventory.get(convert(i.toString()))-ItemMap.get(i));
             }
         }
         try {
@@ -37,8 +48,8 @@ public class InventoryController {
     @SuppressLint("NewApi")
     public void returnItems(Map<Item,Integer> ItemMap){
         for(Item i:ItemMap.keySet()){
-            if(inventory.containsKey(i)){
-                inventory.replace(i,inventory.get(i)+ItemMap.get(i));
+            if(inventory.containsKey(convert(i.toString()))){
+                inventory.replace(convert(i.toString()),inventory.get(convert(i.toString()))+ItemMap.get(i));
             }
         }
         try {
@@ -60,41 +71,43 @@ public class InventoryController {
     }
     synchronized public boolean IfEnough(Map<Item,Integer> order){
         for(Item i:order.keySet()){
-            if(inventory.get(i)<order.get(i)) return false;
+            if(inventory.get(convert(i.getName()))<order.get(i)) return false;
         }
         return true;
     }
 
     synchronized public Map<Item,Integer> ModifyOrder(Map<Item,Integer> order){
-        Map<Item,Integer> modifierOrder=new HashMap<>();
-        for(Item i:order.keySet()){
-            if(inventory.get(i)<order.get(i)){
-                if(inventory.get(i)==0) continue;
-                else{
-                    modifierOrder.put(i,inventory.get(i));
-                }
-            }
-            else{
-                modifierOrder.put(i,order.get(i));
-            }
-        }
-        return modifierOrder;
+       if(order!=null){
+           Map<Item,Integer> modifierOrder=new HashMap<>();
+           for(Item i:order.keySet()){
+               if(inventory.get(convert(i.getName()))<order.get(i)){
+                   if(inventory.get(convert(i.getName()))==0) continue;
+                   else{
+                       modifierOrder.put(convert(i.getName()),inventory.get(convert(i.getName())));
+                   }
+               }
+               else{
+                   modifierOrder.put(convert(i.getName()),order.get(i));
+               }
+           }
+           return modifierOrder;
+       }
+       else {
+           return null;
+       }
     }
 
     synchronized public void ModifyInventoryFile() throws IOException {
         for(Item items:inventory.keySet()){
             StringBuilder s=new StringBuilder();
             s.append(items.getClass().getName()).append(" ").append(inventory.get(items));
-            fileWriter.write(s.toString());
+            outputStreamWriter.write(s.toString());
         }
-        fileWriter.flush();
+        outputStreamWriter.flush();
     }
 
-    synchronized public int getItemNum(Item items){
-        if(inventory.containsKey(items)){
-            return inventory.get(items);
-        }
-        else return  -1;
+    synchronized public int getItemNum(int index){
+        return (int) inventory.values().toArray()[index];
     }
 
     synchronized private void init(BufferedReader bufferedReader) throws IOException {
@@ -127,5 +140,24 @@ public class InventoryController {
             }
             s=bufferedReader.readLine();
         }
+    }
+
+    private Item convert(String ItemName){
+        Set<Item> set=inventory.keySet();
+        Item[] items=new Item[4];
+        set.toArray(items);
+        if(ItemName.contains("Burger")){
+            return items[0];
+        }
+        else if(ItemName.contains("Chicken")){
+            return  items[1];
+        }
+        else if(ItemName.contains("FrenchFries")){
+            return  items[2];
+        }
+        else if(ItemName.contains("OnionRing")){
+            return  items[3];
+        }
+        return null;
     }
 }

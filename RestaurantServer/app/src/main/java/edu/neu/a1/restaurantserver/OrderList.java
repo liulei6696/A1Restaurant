@@ -22,11 +22,6 @@ public class OrderList {
         return this.orderList;
     }
 
-    public void addItems(HashMap<Item,Integer> map){
-        Order order =new Order(map);
-        orderList.add(order);
-    }
-
     public void removeOrder(Order order){
         orderList.remove(order);
     }

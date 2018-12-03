@@ -31,13 +31,6 @@ public class ConnectionToClient {
         if (ModifiedOrder!=null) WriteMessages(ModifiedOrder);
     }
 
-    //Iniatialy, when we receive the order detail, the order is not built because we have to check
-    //if we have enough inventory stocks and see if we have to prepare partially.
-    //When we make sure we can safely build an order, it means the checking process is finished
-    public boolean CheckIfIsCompleteClient() {
-        if (order.getOrderId() != -1) return true;
-        return false;
-    }
 
     public Order getOrder() {
         return order;
@@ -50,7 +43,8 @@ public class ConnectionToClient {
     public void WriteMessages(Order order) {
         try {
             if(order!=null) {
-                out.writeObject(order);
+                String orderString=Order.packageOrder(order);
+                out.writeChars(orderString);
                 out.flush();
             }
         } catch (IOException e) {
@@ -60,30 +54,32 @@ public class ConnectionToClient {
 
     //Send a complete order
     public  void  SendOrder(Order order){
-        if(CheckIfIsCompleteClient()){
+
             try {
-                out.writeObject(order);
+                String orderString=Order.packageOrder(order);
+                out.writeChars(orderString);
                 out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+
     }
 
 //
     public Order ReceiveOrderDetail() throws
             IOException, ClassNotFoundException {
         Order order=new Order();
-        if(in.readObject()!=null) {
-            order = (Order) in.readObject();
-            if(MainActivity.orderList.getClientAndOrderMap().containsKey(order.getOrderId())){
+        String receive=in.readUTF();
+        if(receive!=null) {
+            order = Order.convertOrder(receive);
+            if(MainActivity.orderList.getClientAndOrderMap().containsKey(order.getOrderId())&&order.getStatus()!=Status.canceled){
                 MainActivity.orderList.getOrder(order.getOrderId()).setItemsMap(order.getItemsMap());
             }
             else if(order.isBlocked()||order.getStatus()==Status.canceled){
                 MainActivity.orderList.getOrder(order.getOrderId()).setStatus(Status.canceled);
                 return null;
             }
-            if (order != null) {
+            else {
                 return order;
             }
         }
