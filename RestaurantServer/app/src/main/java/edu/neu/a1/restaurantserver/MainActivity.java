@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
         // start consuming order
         new KitchenThread(inventoryListController, orderListController).start();
 
-        // TODO: initialize read inventory in thread
+        // replenish inventory thread
+        new ReplenishInventoryListThread(3000, 30).start();
 
 //        // initialize inventory list
 //        if(flag){
@@ -169,7 +170,9 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-
+    /**
+     * main thread that handles socket connection and dispatch socket to corresponding reply thread
+     */
     private class ServerSocketThread extends Thread {
 
         @Override
@@ -231,6 +234,35 @@ public class MainActivity extends AppCompatActivity {
                         .append(" fries: ").append(array[4]).append(" rings: ")
                         .append(array[5]).append("   Total $ ").append(array[6]).append("\n")
                         .append("current ").append(inventoryListController.getDescription()).append("\n\n");
+
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        textView.setText(msg);
+                    }
+                });
+            }
+        }
+    }
+
+    /**
+     * display inventory list information after replenished
+     */
+    private class DisplayInventoryReplenishInfoThread extends Thread {
+
+        boolean success;
+
+        DisplayInventoryReplenishInfoThread(boolean success){
+            this.success = success;
+        }
+
+        @Override
+        public void run() {
+            synchronized (msg){
+                if(success) {
+                    msg += "Replenished!\ncurrent " + inventoryListController.getDescription() + "\n\n";
+                }else
+                    msg += "Failed replenish.. NO ENOUGH inventory\ncurrent " + inventoryListController.getDescription() + "\n\n";
 
                 MainActivity.this.runOnUiThread(new Runnable() {
                     @Override
@@ -410,6 +442,61 @@ public class MainActivity extends AppCompatActivity {
             }catch (Exception e){
                 e.printStackTrace();
             }
+        }
+    }
+
+    /**
+     * replenish inventory list periodically
+     * need to set
+     */
+    private class ReplenishInventoryListThread extends Thread{
+
+        int sleepTime; // how long to replenish inventory list
+        int amount; // the amount to be added to inventory list on each item
+
+        ReplenishInventoryListThread(int sleepTime, int amount){
+            this.sleepTime = sleepTime;
+            this.amount = amount;
+        }
+
+        @Override
+        public void run() {
+            // initialize inventory
+            int[] inventory = new int[4];
+            try{
+                inventory = getInventory();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+            while(true){
+                try{
+                    sleep(sleepTime);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                // add to inventory list, and display the information
+                if(inventory[0]>=amount && inventory[1]>=amount && inventory[2]>=amount && inventory[3]>=amount){
+                    inventory[0] -= amount; inventory[1] -= amount;
+                    inventory[2] -= amount; inventory[3] -= amount;
+                    inventoryListController.addMore(amount,amount,amount,amount);
+                    new DisplayInventoryReplenishInfoThread(true).start();
+                }else
+                    new DisplayInventoryReplenishInfoThread(false).start();
+            }
+        }
+
+        /**
+         * read inventory from "inventory.txt" in raw folder
+         * @return inventory array as in order "burger, chicken, fries, ring", length 4
+         * @throws IOException if read file failed
+         */
+        private int[] getInventory() throws IOException {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.inventory), "UTF-8"));
+            String line = bufferedReader.readLine();
+            String[] array = line.split(",");
+            return new int[]{Integer.parseInt(array[0]), Integer.parseInt(array[1]), Integer.parseInt(array[2]), Integer.parseInt(array[3])};
         }
     }
 

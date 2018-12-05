@@ -34,7 +34,6 @@ public class Order implements Serializable {
 
         this.customerId = customerId;
         status = OrderStatus.Created;
-        // TODO why increment by two?
         orderId = ORDERID++; // as created, self assign an id
     }
 
