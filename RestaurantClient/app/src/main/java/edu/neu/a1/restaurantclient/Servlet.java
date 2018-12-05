@@ -47,7 +47,7 @@ public class Servlet { // send and receive order as strings
         String order = null;
 
         try{
-            order = in.readLine();
+            while((order = in.readLine())!=null);
         }catch (IOException e){
             e.printStackTrace();
         }

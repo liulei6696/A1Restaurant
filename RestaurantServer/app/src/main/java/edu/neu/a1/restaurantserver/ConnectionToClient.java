@@ -1,8 +1,5 @@
 package edu.neu.a1.restaurantserver;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

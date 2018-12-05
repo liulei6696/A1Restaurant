@@ -36,10 +36,26 @@
         android:textSize="28sp"
         android:textStyle="bold|italic" />
 
-    <ListView
-        android:id="@+id/ListView"
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/orderList"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/text_view_in_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"/>
+    </ScrollView>
+
+    <!--<ListView-->
+        <!--android:id="@+id/ListView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/orderList"/>-->
 
 </RelativeLayout>

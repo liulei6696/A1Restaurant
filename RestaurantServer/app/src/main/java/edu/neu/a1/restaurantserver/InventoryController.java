@@ -15,10 +15,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class InventoryController {
+
     Map<Item,Integer> inventory;
     InputStreamReader inputStreamReader;
     OutputStreamWriter outputStreamWriter;
     BufferedReader bufferedReader;
+
+
     InventoryController(InputStreamReader inputStreamReader, OutputStreamWriter outputStreamWriter){
 //        fileInputStream=bufferedReader;
 //        fileOutputStream=fileWriter;

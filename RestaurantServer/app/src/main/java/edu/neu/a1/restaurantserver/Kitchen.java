@@ -1,9 +1,7 @@
 package edu.neu.a1.restaurantserver;
 
 public class Kitchen {
-    Kitchen(){
 
-    }
     synchronized public void cook(){
         try {
             //orderlist setstate

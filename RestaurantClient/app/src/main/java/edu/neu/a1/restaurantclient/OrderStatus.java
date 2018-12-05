@@ -12,6 +12,7 @@ public enum OrderStatus {
     OnProcess,
     Ready,
     Complete,
-    Cancelled
+    Canceled,
+    Confirmed
 
 }

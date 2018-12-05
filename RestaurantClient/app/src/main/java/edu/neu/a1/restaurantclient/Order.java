@@ -17,6 +17,7 @@ public class Order implements Serializable {
     private int customerId;
     private int orderId;
     private OrderStatus status;
+    private static int ORDERID = 1340;
 
     private final Item burger = new Burger();
     private final Item chicken = new Chickens();
@@ -33,7 +34,8 @@ public class Order implements Serializable {
 
         this.customerId = customerId;
         status = OrderStatus.Created;
-        orderId = -1; // as created, if equals -1, don't display
+        // TODO why increment by two?
+        orderId = ORDERID++; // as created, self assign an id
     }
 
     public Map<Item, Integer> getItems(){

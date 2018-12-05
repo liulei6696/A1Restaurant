@@ -9,18 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +49,6 @@ public class OrderListActivity extends Activity {
         }catch (IOException e){
             e.printStackTrace();
         }
-
-        System.out.println(orderList);
 
         MyBaseAdapter myBaseAdapter = new MyBaseAdapter(getApplicationContext(), orderList);
         container.setAdapter(myBaseAdapter);
@@ -118,6 +110,8 @@ public class OrderListActivity extends Activity {
             if(strs[0].equals("-1")) order_id.setText(" ");
             else order_id.setText(strs[0]);
             order_status.setText(strs[7]);
+            if(strs[7].equalsIgnoreCase(OrderStatus.Wait.toString()))
+                order_status.setTextColor(getResources().getColor(R.color.colorRed));
             order_burge.setText(strs[2]);
             order_chick.setText(strs[3]);
             order_fries.setText(strs[4]);
