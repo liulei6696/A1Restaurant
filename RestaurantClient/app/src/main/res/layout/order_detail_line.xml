@@ -58,87 +58,92 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/item1"
             android:textColor="@color/colorBlack"
-            android:textSize="11dp"
-            android:text="@string/item1"/>
+            android:textSize="11dp" />
 
         <TextView
             android:id="@+id/line_burger_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="2dp"
-            android:textColor="@color/colorBlack"
             android:text="0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/colorBlack" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/item2"
             android:textColor="@color/colorBlack"
-            android:textSize="11dp"
-            android:text="@string/item2"/>
+            android:textSize="11dp" />
 
         <TextView
             android:id="@+id/line_chick_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="2dp"
-            android:textColor="@color/colorBlack"
             android:text="0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/colorBlack" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Fries"
             android:textColor="@color/colorBlack"
-            android:textSize="11dp"
-            android:text="Fries"/>
+            android:textSize="11dp" />
 
         <TextView
             android:id="@+id/line_fries_num"
-            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="2dp"
-            android:textColor="@color/colorBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="0"
+            android:textColor="@color/colorBlack" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Rings"
             android:textColor="@color/colorBlack"
-            android:textSize="11dp"
-            android:text="Rings"/>
+            android:textSize="11dp" />
 
         <TextView
             android:id="@+id/line_ring_num"
-            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="2dp"
-            android:textColor="@color/colorBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="0"
+            android:textColor="@color/colorBlack" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
-            android:text="total: $"/>
+            android:text="total: $"
+            android:textColor="@color/colorBlack" />
 
         <TextView
             android:id="@+id/line_total_price"
-            android:text="0"
-            android:textColor="@color/colorBlack"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/colorBlack" />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/line_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
             android:layout_marginLeft="4dp"
-            android:text="edit"/>
+            android:text="edit"
+            android:textSize="12dp" />
     </LinearLayout>
 
 </LinearLayout>
