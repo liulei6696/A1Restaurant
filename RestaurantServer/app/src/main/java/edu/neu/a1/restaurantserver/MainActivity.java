@@ -82,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
         new ServerSocketThread().start();
 
         // start consuming order
-        new KitchenThread(inventoryListController, orderListController).start();
+        new KitchenThread(inventoryListController, orderListController,5000).start();
 
         // replenish inventory thread
-        new ReplenishInventoryListThread(3000, 30).start();
+        new ReplenishInventoryListThread(200000, 30).start();
 
 //        // initialize inventory list
 //        if(flag){

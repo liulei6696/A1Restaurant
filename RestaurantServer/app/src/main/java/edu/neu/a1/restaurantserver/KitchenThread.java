@@ -4,10 +4,12 @@ public class KitchenThread extends Thread {
 
     InventoryListController inventoryListController;
     OrderListController orderListController;
+    int cookTime;
 
-    KitchenThread(InventoryListController inventoryListController, OrderListController orderListController){
+    KitchenThread(InventoryListController inventoryListController, OrderListController orderListController, int cookTime){
         this.inventoryListController = inventoryListController;
         this.orderListController = orderListController;
+        this.cookTime = cookTime;
     }
 
     @Override
@@ -21,7 +23,7 @@ public class KitchenThread extends Thread {
             } else {
                 // sleep and check again
                 try {
-                    sleep(2000);
+                    sleep(200);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -40,7 +42,7 @@ public class KitchenThread extends Thread {
                 Integer.parseInt(order.split(",")[4]), Integer.parseInt(order.split(",")[5]));
         // cooking
         try{
-            sleep(2000);
+            sleep(cookTime);
         }catch (Exception e){
             e.printStackTrace();
         }
